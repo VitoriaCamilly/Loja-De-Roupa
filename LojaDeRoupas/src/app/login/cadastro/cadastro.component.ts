@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InicioComponent } from 'src/app/pgprincipal/inicio/inicio.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
