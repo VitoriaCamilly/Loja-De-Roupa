@@ -417,3 +417,7 @@ h3 {
     padding: 0px 0px 15px 0px;
 }
 
+button {
+    background-color: transparent;
+    border: transparent;
+}
