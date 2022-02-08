@@ -4,11 +4,11 @@ import { resolve } from 'url';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export default class UsuarioService {
 
   constructor() { }
 
-  buscarUsuarios(){
+  buscarUsuarios() {
     return new Promise((resolvido, rejeitado) => {
       fetch('/api/buscar_usuario',
         {
@@ -18,11 +18,12 @@ export class UsuarioService {
           }
         }
       ).then(resultado => resultado.json())
-      .then(resolvido)
-      .catch(rejeitado);
-      
-      
-      
+        .then(resolvido)
+        .catch(rejeitado);
+    }
+  }
+    
+
 
   // login(nickname, senha) {
   //   return new Promise((resolve, reject) => {
@@ -43,6 +44,3 @@ export class UsuarioService {
   //     }).then(resolve).catch(reject);
   //   });
   // }
-
-}
-
