@@ -15,6 +15,8 @@ import { CasacosComponent } from './casacos/casacos/casacos.component';
 import { CasacosModule } from './casacos/casacos.module';
 import { BlusasComponent } from './blusas/blusas/blusas.component';
 import { BlusasModule } from './blusas/blusas.module';
+import { PijamaComponent } from './pijama/pijama/pijama.component';
+import { PijamaModule } from './pijama/pijama.module';
 
 const routes: Routes = [
   { path: '', component: CadastroComponent }, 
@@ -22,7 +24,8 @@ const routes: Routes = [
   { path: 'vestidos', component: VestidosComponent},
   { path: 'blusas', component: BlusasComponent},
   { path: 'casacos', component: CasacosComponent},
-  { path: 'conjuntos', component: ConjuntosComponent}
+  { path: 'conjuntos', component: ConjuntosComponent},
+  { path: 'pijama', component: PijamaComponent}
 ];
 
 @NgModule({
@@ -37,7 +40,8 @@ const routes: Routes = [
     VestidosModule,
     BlusasModule,
     CasacosModule,
-    ConjuntosModule
+    ConjuntosModule,
+    PijamaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

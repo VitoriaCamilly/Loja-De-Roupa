@@ -360,10 +360,11 @@ h3 {
     font-weight: 700;
     height: 40px;
     letter-spacing: .5px;
-    padding: 0;
+    padding: 0px;
     text-transform: uppercase;
     width: 100%;
     background: #fcc7d2;
+    margin: 5px;
 }
 
 .rodape {
@@ -420,4 +421,6 @@ h3 {
 button {
     background-color: transparent;
     border: transparent;
+    color: #edb0c0;
+    margin: 25px;
 }
