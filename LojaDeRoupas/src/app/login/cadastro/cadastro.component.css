@@ -1,0 +1,40 @@
+.background {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://media.istockphoto.com/photos/pink-baby-shower-nursery-background-picture-id589542184?k=20&m=589542184&s=170667a&w=0&h=eLEEoVlh0ASOFNNYwQONiEFmA0EOiLwrRQ10h5_cJEA=");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div {
+    background-color: aliceblue;
+    width: 350px;
+    height: 400px;
+    margin-right: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

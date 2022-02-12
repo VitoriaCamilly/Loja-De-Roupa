@@ -33,7 +33,7 @@ inserirRota('/criar_usuario',
         }
 
         if (!dados.nickname) {
-            return resposta({ erro: 'é necessário preencher a tabela' })
+            return resposta({ alert: 'é necessário preencher a tabela' })
         }
         // if (!dados.email) {
         //     return resposta({ erro: 'é necessário preencher a tabela' })
