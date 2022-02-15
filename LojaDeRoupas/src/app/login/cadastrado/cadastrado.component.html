@@ -1,0 +1,29 @@
+<div class="background">
+
+
+  <div class="div">
+    <div>
+      <div class="img">
+        <img width="300px" height="140px"
+          src="https://uc-static-images.ucdn.com.br/tr:w-300,h-105,c-at_max,pr-true,q-99/a173-ofyvsw/s/ba/69/32/29983263f574fe675e1bcf09d5.png">
+      </div>
+
+      <div class="login">
+        <h1>Entrar</h1>
+      </div>
+
+      <div class="cadastro">
+        <div>
+          <input [(ngModel)]= 'email' placeholder="Email">
+        </div>
+        <div>
+          <input [(ngModel)]= 'password' placeholder="Senha" type="password">
+        </div>
+        <div class="botoes">
+            <button (click)="logar()" >Entrar</button>
+            <button (click)="router.navigate([''])">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

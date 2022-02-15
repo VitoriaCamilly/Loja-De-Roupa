@@ -15,4 +15,8 @@ export class ConjuntosComponent implements OnInit {
   ngOnInit() {
   }
 
+  encaminhar(caminho) {
+    this.router.navigate([caminho]);
+    window.scrollTo(0, 0);
+  }
 }

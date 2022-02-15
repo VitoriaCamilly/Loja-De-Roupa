@@ -15,4 +15,9 @@ export class PijamaComponent implements OnInit {
   ngOnInit() {
   }
 
+  encaminhar(caminho) {
+    this.router.navigate([caminho]);
+    window.scrollTo(0, 0);
+  }
+
 }

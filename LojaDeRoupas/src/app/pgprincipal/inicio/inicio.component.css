@@ -196,6 +196,7 @@ header {
     font-weight: 400;
     line-height: 1.4;
     padding: 8px 20px;
+    overflow: initial;
 }
 
 .detalhe:hover {
