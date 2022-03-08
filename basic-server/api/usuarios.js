@@ -2,20 +2,21 @@ inserirRota('/login',
     function (dados, resposta) {
         console.log(dados);
 
-        database(`SELECT * FROM USER WHERE NOME = "${dados.nome}" AND SENHA "${dados.senha}" LIMIT 1`) 
+        database(`SELECT * FROM CLIENTE WHERE EMAIL = "${dados.email}" AND SENHA = "${dados.senha}" LIMIT 1`)
             .then(result => {
                 console.log('result', result);
-                resposta({ user: result[0]});
+                resposta({ cliente: result[0] });
             }).catch(erro => {
                 resposta({ erro: 'Erro ao buscar usuario!' });
             });
-});
+    });
+
 
 inserirRota('/buscar_usuario',
     function (dados, resposta) {
         console.log(dados);
 
-        database(`SELECT * FROM USER`)
+        database(`SELECT * FROM CLIENTE`)
             .then(result => {
                 resposta({ list: result })
             }).catch(erro => {
@@ -24,65 +25,34 @@ inserirRota('/buscar_usuario',
     }
 );
 
-// inserirRota('/criar_usuario',
-//     function name(dados, resposta) {
-//         console.log(dados)
-
-//         if (!dados.nome) {
-//             return resposta({ erro: 'é necessário preencher a nome' })
-//         }
-
-//         if (!dados.nickname) {
-//             return resposta({ alert: 'é necessário preencher a nickname' })
-//         }
-//         // if (!dados.email) {
-//         //     return resposta({ erro: 'é necessário preencher a tabela' })
-//         // }
-//         // if (!dados.nascimento) {
-//         //     return resposta({ erro: 'é necessário preencher a tabela' })
-//         // }
-//         if (!dados.senha) {
-//             return resposta({ erro: 'é necessário preencher a senha' })
-//         }
-
-//         database(`INSERT INTO USER (NOME, NICKNAME, SENHA) VALUES ("${dados.nome}", "${dados.nickname}", "${dados.senha}")`)
-//             .then(result => {
-//                 console.log('Usuario inserido com sucesso!');
-//                 resposta({ message: 'Usuario inserido com sucesso!' })
-//             }).catch(erro => {
-//                 console.log('Erro ao inserir usuario!');
-//                 resposta({ erro: 'Erro ao inserir usuario!' })
-//             });
-//     }
-// )
-
-
 inserirRota('/criar_usuario',
-    function(dados, resposta) {
+    function (dados, resposta) {
         console.log(dados);
 
-        if (!dados.nome) {
-            return resposta({ erro: 'É necessario arrumar nome' })
-        }
-
-        if (!dados.email) {
-            return resposta({ erro: 'É necessario arrumar email' })
+        if (!dados.nascimento) {
+            return resposta({ erro: 'É necessario inserir nascimento' })
         }
         if (!dados.senha) {
-            return resposta({ erro: 'É necessario arrumar password' })
+            return resposta({ erro: 'É necessario inserir password' })
+        }
+        if (!dados.email) {
+            return resposta({ erro: 'É necessario inserir email' })
+        }
+        if (!dados.nome) {
+            return resposta({ erro: 'É necessario inserir nome' })
         }
 
-
-        database(`INSERT INTO USER(
-        NOME, EMAIL, SENHA
+        database(`INSERT INTO CLIENTE(NOME,
+        EMAIL, SENHA, NASCIMENTO
             )VALUES 
-    ("${dados.nome}", "${dados.email}", "${dados.senha}")`)
+        ("${dados.nome}", "${dados.email}", "${dados.senha}", "${dados.nascimento}")`)
             .then(result => {
                 console.log('Usuario Inserido com Sucesso!');
                 resposta({ message: 'Usuario Inserido com Sucesso!' });
             }).catch(erro => {
-                console.log('Erro ao inserir o Usuario!');
-                resposta({ erro: 'Erro ao inserir o Usuario!' });
+                console.log('Erro ao inserir o Usuario!', erro);
+                resposta({ erro: 'Erro ao inserir o Usuario!' }
+                );
             });
     })
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import UsuarioService from '../../services/usuario.service'
+import { ClienteService } from '../../services/cliente.service'
 
 @Component({
   selector: 'app-cadastrado',
@@ -11,33 +11,25 @@ export class CadastradoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioservico: UsuarioService
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit() {
   }
 
   email = '';
-  password = '';
+  senha = '';
 
-  logar() {
-    this.usuarioservico.buscarUsuarios()
-      .then((resultado:any) => {
-
-        const find = resultado.list.find(e => e.EMAIL == this.email && e.SENHA == this.password);
-
-        if (find) {
-          localStorage.setItem('USER', this.email);
+  login() {
+    this.clienteService.login(this.email, this.senha)
+      .then((resultado: any) => {
+        if (resultado.cliente){
           this.router.navigate(['/inicio']);
-          console.log('Deu 2222');
-
         } else {
-          alert('Usuário não cadastrado!');
-          console.log('Não Deu 2222');
+          alert("Usuário e/ou login incorreto");
         }
-
-      }).catch(erro => {
-        console.log('Erro ao buscar usuarios', erro)
+      }).catch((erro: any) => {
+        console.log(erro);
       })
   }
 

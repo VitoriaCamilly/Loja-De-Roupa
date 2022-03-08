@@ -14,14 +14,14 @@
 
       <div class="cadastro">
         <div>
-          <input [(ngModel)]= 'email' placeholder="Email">
+          <input [(ngModel)]='email' placeholder="Email">
         </div>
         <div>
-          <input [(ngModel)]= 'password' placeholder="Senha" type="password">
+          <input [(ngModel)]='senha' placeholder="Senha" type="password">
         </div>
         <div class="botoes">
-            <button (click)="logar()" >Entrar</button>
-            <button (click)="router.navigate([''])">Voltar</button>
+          <button (click)="login()">Entrar</button>
+          <button (click)="router.navigate([''])">Voltar</button>
         </div>
       </div>
     </div>

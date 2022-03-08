@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InicioComponent } from 'src/app/pgprincipal/inicio/inicio.component';
 import { Router } from '@angular/router';
-import UsuarioService from 'src/app/services/usuario.service';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,16 +11,29 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit() {
-    this.usuarioService.buscarUsuarios()
-    .then(resultado => {
-      console.log('RESULTADO:', resultado);
-    }).catch(erro => {
-      console.log('ERRO AO BUSCAR USUARIOS', erro)
-    })
+    
+  }
+  nome:'';
+  email:'';
+  senha:'';
+  nascimento: '';
+
+  login() {
+    this.clienteService.cadastro(this.nome, this.email, this.senha, this.nascimento)
+      .then((resultado: any) => {
+        alert("Você foi cadastrado!")
+        if (resultado.cliente){
+          this.router.navigate(['/login'])
+        } else {
+          console.log("Não fez login");
+        }
+      }).catch((erro: any) => {
+        console.log(erro);
+      })
   }
 
 }

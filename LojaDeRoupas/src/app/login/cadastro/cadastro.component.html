@@ -14,23 +14,20 @@
 
       <div class="cadastro">
         <div>
-          <input placeholder="Nome">
+          <input [(ngModel)]='nome' placeholder="Nome Completo">
         </div>
         <div>
-          <input placeholder="Sobrenome">
+          <input [(ngModel)]='nascimento' placeholder="Data de Nascimento" type="date">
         </div>
         <div>
-          <input placeholder="Data de Nascimento" type="date">
+          <input [(ngModel)]='email' placeholder="Email">
         </div>
         <div>
-          <input placeholder="Email">
-        </div>
-        <div>
-          <input placeholder="Senha" type="password">
+          <input [(ngModel)]='senha' placeholder="Senha" type="password">
         </div>
         <div class="botoes">
          
-            <button (click)="router.navigate(['/inicio'])">Cadastrar</button>
+            <button (click)="login()">Cadastrar</button>
          
             <button (click)="router.navigate(['/cadastrado'])">Ja tenho um cadastro</button>
          
