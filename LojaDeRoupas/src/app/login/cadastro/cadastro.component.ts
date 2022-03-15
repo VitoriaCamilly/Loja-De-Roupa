@@ -25,6 +25,7 @@ export class CadastroComponent implements OnInit {
   login() {
     this.clienteService.cadastro(this.nome, this.email, this.senha, this.nascimento)
       .then((resultado: any) => {
+        
         alert("Você foi cadastrado!")
         if (resultado.cliente){
           this.router.navigate(['/login'])

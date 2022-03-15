@@ -29,6 +29,10 @@ inserirRota('/criar_usuario',
     function (dados, resposta) {
         console.log(dados);
 
+
+        if (!dados.nome) {
+            return resposta({ erro: 'É necessario inserir nome' })
+        }
         if (!dados.nascimento) {
             return resposta({ erro: 'É necessario inserir nascimento' })
         }
@@ -38,9 +42,7 @@ inserirRota('/criar_usuario',
         if (!dados.email) {
             return resposta({ erro: 'É necessario inserir email' })
         }
-        if (!dados.nome) {
-            return resposta({ erro: 'É necessario inserir nome' })
-        }
+
 
         database(`INSERT INTO CLIENTE(NOME,
         EMAIL, SENHA, NASCIMENTO

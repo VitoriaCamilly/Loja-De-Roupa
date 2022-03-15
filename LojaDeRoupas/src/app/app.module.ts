@@ -18,6 +18,7 @@ import { BlusasModule } from './blusas/blusas.module';
 import { PijamaComponent } from './pijama/pijama/pijama.component';
 import { PijamaModule } from './pijama/pijama.module';
 import { CadastradoComponent } from './login/cadastrado/cadastrado.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 const routes: Routes = [
   { path: '', component: CadastroComponent }, 
@@ -27,12 +28,14 @@ const routes: Routes = [
   { path: 'casacos', component: CasacosComponent},
   { path: 'conjuntos', component: ConjuntosComponent},
   { path: 'pijama', component: PijamaComponent},
-  { path: 'cadastrado', component: CadastradoComponent}
+  { path: 'cadastrado', component: CadastradoComponent},
+  { path: 'carrinho', component: CarrinhoComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarrinhoComponent
   ],
   imports: [
     BrowserModule,
