@@ -42,6 +42,7 @@ inserirRota('/criar_usuario',
         if (!dados.email) {
             return resposta({ erro: 'É necessario inserir email' })
         }
+        
 
 
         database(`INSERT INTO CLIENTE(NOME,

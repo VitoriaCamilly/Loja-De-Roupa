@@ -1,4 +1,4 @@
-inserirRota('/carrinho'), 
-function() {
-    database (`INSERT INTO CARRINHO`)
-}
+// inserirRota('/carrinho'), 
+// function() {
+//     database (`INSERT INTO CARRINHO`)
+// }

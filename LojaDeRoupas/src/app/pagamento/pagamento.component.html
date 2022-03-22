@@ -25,132 +25,31 @@
 </header>
 
 <div class="superior">
-    <h4>Pijamas</h4>
-</div>
+    <h4>Pagamento</h4>
 
-<div class="produtos-fileira">
-    <div class="mar">
-        <div class="produto">
-            <div class="item">
-                <img
-                    src="https://uc-static-images.ucdn.com.br/tr:w-260,h-400,c-at_max,pr-true,q-99/a173-ofyvsw/pv/01/43/59/58120da35cd9d4dd553966a69d.jpg">
-            </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    <span>PIJAMA LITTLE DREAMER</span>
-                </div>
+    <div class="cadastro">
+      <div>
+        <input [(ngModel)]='nome' placeholder="Nome Completo">
+      </div>
+      <div>
+        <input [(ngModel)]='nascimento' placeholder="Data de Nascimento" type="date">
+      </div>
+      <div>
+        <input [(ngModel)]='email' placeholder="Email">
+      </div>
+      <div>
+        <input [(ngModel)]='senha' placeholder="Senha" type="password">
+      </div>
+      <div class="botoes">
+       
+          <button (click)="confirmaPagamento()">Confirmar compra</button>
+       
+          <button (click)="router.navigate(['/cadastrado'])">Adicionar Frete</button>
 
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
-
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">58,99</span>
-                </div>
-
-                <div class="detalhes">
-                    <button class="detalhe">Comprar</button>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
 
-    <div class="mar">
-        <div class="produto">
-            <div class="item">
-                <img
-                    src="https://uc-static-images.ucdn.com.br/tr:w-260,h-400,c-at_max,pr-true,q-99/a173-ofyvsw/pv/79/90/46/ea309782ea8909f2cd61f0a4f0.jpg">
-            </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    <span>{{nomeProduto}}</span>
-                </div>
-
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
-
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">58,99</span>
-                </div>
-
-                <div class="detalhes">
-                    <button class="detalhe">Comprar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mar">
-        <div class="produto">
-            <div class="item">
-                <img
-                    src="https://uc-static-images.ucdn.com.br/tr:w-260,h-400,c-at_max,pr-true,q-99/a173-ofyvsw/pv/b2/60/02/bf99935092ea3224884ea162b1.jpg">
-            </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    <span>CONJUNTO MACACÃO</span>
-                </div>
-
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
-
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">58,99</span>
-                </div>
-
-                <div class="detalhes">
-                    <button class="detalhe">Comprar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mar">
-        <div class="produto">
-            <div class="item">
-                <img
-                    src="https://uc-static-images.ucdn.com.br/tr:w-260,h-400,c-at_max,pr-true,q-99/a173-ofyvsw/pv/10/a4/e9/da19f24edacdaf05d183b8831f.jpg">
-            </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    <span>VESTIDO LONGO INFANTIL</span>
-                </div>
-
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
-
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">58,99</span>
-                </div>
-
-                <div class="detalhes">
-                    <button class="detalhe">Comprar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <footer>
     <div class="contato">
     <h3>CONTATO</h3>
