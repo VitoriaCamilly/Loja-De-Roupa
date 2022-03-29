@@ -12,21 +12,21 @@ database(`CREATE TABLE IF NOT EXISTS CLIENTE(
     //resposta({ resposta: erro });
 });
 
-// database(`CREATE TABLE IF NOT EXISTS ENDERECO(
-//     CEP CHAR(8) NOT NULL PRIMARY KEY,
-//     RUA VARCHAR(100) NOT NULL, 
-//     NUMERO INT,
-//     BAIRRO VARCHAR(100) NOT NULL,
-//     CIDADE VARCHAR(100) NOT NULL,
-//     ESTADO VARCHAR(100) NOT NULL,
-//     PAIS VARCHAR(50) NOT NULL
-//     )`).then(result => {
-//     console.log('Tabela Criada com Sucesso');
-//     //resposta({ resposta: 'TABELA CRIADA' });
-// }).catch(erro => {
-//     console.log('Tabela Com Erro');
-//     //resposta({ resposta: erro });
-// });
+database(`CREATE TABLE IF NOT EXISTS ENDERECO(
+    CEP CHAR(8) NOT NULL PRIMARY KEY,
+    RUA VARCHAR(100) NOT NULL, 
+    NUMERO INT,
+    BAIRRO VARCHAR(100) NOT NULL,
+    CIDADE VARCHAR(100) NOT NULL,
+    ESTADO VARCHAR(100) NOT NULL,
+    PAIS VARCHAR(50) NOT NULL
+    )`).then(result => {
+    console.log('Tabela Criada com Sucesso');
+    //resposta({ resposta: 'TABELA CRIADA' });
+}).catch(erro => {
+    console.log('Tabela Com Erro');
+    //resposta({ resposta: erro });
+});
 
 
 database(`CREATE TABLE IF NOT EXISTS PRODUTOS (

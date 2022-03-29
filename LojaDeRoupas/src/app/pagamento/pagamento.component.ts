@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgModel } from '@angular/forms';
 import { PagamentoService } from '../services/pagamento.service';
 
 @Component({
@@ -9,6 +8,8 @@ import { PagamentoService } from '../services/pagamento.service';
   styleUrls: ['./pagamento.component.css']
 })
 export class PagamentoComponent implements OnInit {
+
+  contador = 0;
 
   constructor(
     private pagamentoService: PagamentoService,
@@ -24,7 +25,7 @@ export class PagamentoComponent implements OnInit {
   }
 
   confirmaPagamento(){
-    this.clienteService.cadastro(this.nome, this.email, this.senha, this.nascimento)
+    this.pagamentoService.confirma(this.nome, this.email, this.senha, this.nascimento)
       .then((resultado: any) => {
         
         alert("Você foi cadastrado!")
@@ -36,6 +37,10 @@ export class PagamentoComponent implements OnInit {
       }).catch((erro: any) => {
         console.log(erro);
       })
+  }
+
+  pagamento(cont){
+    this.contador = cont;
   }
 
 }

@@ -157,15 +157,16 @@ header {
 }
 
 .superior {
-    height: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     border-bottom: 1px #e7e4e4 solid;
-    border-top: 1px #e7e4e4 solid;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
     margin: 25px 0px 25px 0px;
     color: #f596a9;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 50px;
 }
 
 .botao {

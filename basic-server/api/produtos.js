@@ -2,7 +2,6 @@ inserirRota('/produtos',
     function (dados, resposta) {
         console.log(dados);
 
-
         if (!dados.nome) {
             return resposta({ erro: 'É necessario inserir nome' })
         }
@@ -16,8 +15,6 @@ inserirRota('/produtos',
             return resposta({ erro: 'É necessario inserir preco' })
         }
 
-
-
         database(`INSERT INTO PRODUTOS(NOME, CODIGO, TIPO, PRECO
             )VALUES 
         ("${dados.nome}", "${dados.codigo}", "${dados.tipo}", "${dados.preco}")`)
@@ -25,8 +22,8 @@ inserirRota('/produtos',
                 console.log('Produto Inserido com Sucesso!');
                 resposta({ message: 'Produto Inserido com Sucesso!' });
             }).catch(erro => {
-                console.log('Erro ao inserir o Produto!', erro);
-                resposta({ erro: 'Erro ao inserir o Produto!' }
+                console.log('Erro ao inserir o Produto!1', erro);
+                resposta({ erro: 'Erro ao inserir o Produto!2' }
                 );
             });
     })

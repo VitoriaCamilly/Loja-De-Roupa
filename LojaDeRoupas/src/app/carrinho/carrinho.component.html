@@ -59,7 +59,19 @@
 <br>
 
 <button (click)="encaminhar('/pagamento')">Forma de Pagamento</button>
+<button (click)="frete(1)">Frete<br>R$20,00</button>
 
+<div *ngIf="this.contador == 1" >
+    <input [(ngModel)]='pais' placeholder="País">
+    <input [(ngModel)]='estado' placeholder="Estado">
+    <input [(ngModel)]='cidade' placeholder="Cidade">
+    <input [(ngModel)]='bairro' placeholder="Bairro">
+    <input [(ngModel)]='cep' placeholder="CEP">
+    <input [(ngModel)]='rua' placeholder="Rua">
+    <input [(ngModel)]='numero' placeholder="Numero">
+    <button (click)="endereco()">Confirmar Endereço</button>
+    <button (click)="cancelar()">Cancelar</button>
+</div>
 
 
 <footer>

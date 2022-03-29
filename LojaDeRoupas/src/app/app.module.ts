@@ -20,6 +20,7 @@ import { PijamaModule } from './pijama/pijama.module';
 import { CadastradoComponent } from './login/cadastrado/cadastrado.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: CadastroComponent }, 
@@ -49,7 +50,8 @@ const routes: Routes = [
     BlusasModule,
     CasacosModule,
     ConjuntosModule,
-    PijamaModule
+    PijamaModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
