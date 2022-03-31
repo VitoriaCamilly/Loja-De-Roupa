@@ -25,18 +25,18 @@ export class PagamentoComponent implements OnInit {
   }
 
   confirmaPagamento(){
-    this.pagamentoService.confirma(this.nome, this.email, this.senha, this.nascimento)
-      .then((resultado: any) => {
+    // this.pagamentoService.confirma(this.nome, this.email, this.senha, this.nascimento)
+    //   .then((resultado: any) => {
         
-        alert("Você foi cadastrado!")
-        if (resultado.cliente){
-          this.router.navigate(['/login'])
-        } else {
-          console.log("Não fez login");
-        }
-      }).catch((erro: any) => {
-        console.log(erro);
-      })
+    //     alert("Você foi cadastrado!")
+    //     if (resultado.cliente){
+    //       this.router.navigate(['/login'])
+    //     } else {
+    //       console.log("Não fez login");
+    //     }
+    //   }).catch((erro: any) => {
+    //     console.log(erro);
+    //   })
   }
 
   pagamento(cont){

@@ -21,6 +21,7 @@ import { CadastradoComponent } from './login/cadastrado/cadastrado.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { FormsModule } from '@angular/forms';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: CadastroComponent }, 
@@ -53,7 +54,7 @@ const routes: Routes = [
     PijamaModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

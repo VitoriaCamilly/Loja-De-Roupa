@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarrinhoService } from '../services/carrinho.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -11,7 +10,6 @@ export class CarrinhoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -37,13 +35,13 @@ export class CarrinhoComponent implements OnInit {
   }
 
   endereco(){
-    this.carrinhoService.endereco(this.pais, this.estado, this.cidade, this.bairro, this.cep, this.rua, this.numero)
-      .then((resultado = null) => {
-        alert("Endereço adicionado ao frete com sucesso!")
-        this.router.navigate(['/pagamento'])
-      }).catch((erro: any) => {
-        console.log(erro);
-      })
+    // this.carrinhoService.endereco(this.pais, this.estado, this.cidade, this.bairro, this.cep, this.rua, this.numero)
+    //   .then((resultado = null) => {
+    //     alert("Endereço adicionado ao frete com sucesso!")
+    //     this.router.navigate(['/pagamento'])
+    //   }).catch((erro: any) => {
+    //     console.log(erro);
+    //   })
     }
 
   cancelar(){

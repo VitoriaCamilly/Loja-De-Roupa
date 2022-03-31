@@ -46,9 +46,9 @@ inserirRota('/buscar_produtinhos',
     function (dados, resposta) {
         console.log(dados);
 
-        database(`SELECT * FROM PRODUTOS WHERE CODIGO = "${dados.codigo}" LIMIT 1`)
+        database(`SELECT * FROM PRODUTOS WHERE TIPO = "${dados.tipo}"`)
             .then(result => {
-                resposta({ produtinho: result[0]})
+                resposta({ produtinho: result})
             }).catch(erro => {
                 resposta({ erro: 'Erro ao buscar usuario!' })
             });

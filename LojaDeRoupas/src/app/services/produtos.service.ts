@@ -8,14 +8,14 @@ export class ProdutosService {
 
   constructor() { }
 
-  buscarProdutos(codigo) {
+  buscarProdutos(tipo) {
     return new Promise((resolvido, rejeitado) => {
       fetch('/api/buscar_produtinhos',
         {
           method: 'POST',
           body: JSON.stringify(
             {
-              codigo: codigo
+              tipo: tipo
             }
           ),
           headers: {

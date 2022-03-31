@@ -29,7 +29,7 @@
 </div>
 
 <div class="produtos-fileira">
-    <div class="mar">
+    <div class="mar" *ngFor="let teste of lista">
         <div class="produto">
             <div class="item">
                 <img
@@ -37,7 +37,7 @@
             </div>
             <div class="conteudo">
                 <div class="titulo">
-                    <span>PIJAMA LITTLE DREAMER</span>
+                    {{teste.NOME}} 
                 </div>
 
                 <div class="botoes">
@@ -50,7 +50,7 @@
 
                 <div class="preco">
                     <span class="cifrao">R$</span>
-                    <span class="valor">58,99</span>
+                    <span class="valor">{{teste.PRECO}}</span>
                 </div>
 
                 <div class="detalhes">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="mar">
+    <!-- <div class="mar">
         <div class="produto">
             <div class="item">
                 <img
@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <footer>
     <div class="contato">
