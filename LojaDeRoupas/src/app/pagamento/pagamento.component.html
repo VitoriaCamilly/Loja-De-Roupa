@@ -52,8 +52,8 @@
     </div>
 
     <div *ngIf="this.contador == 2">
-        <input [(ngModel)]='Boleto' placeholder="Boleto">
         <div class="botoes">
+            {{boleto}}
             <button (click)="confirmaPagamento()">Confirmar compra</button>
             <button (click)="router.navigate(['/inicio'])">Cancelar</button>
         </div>

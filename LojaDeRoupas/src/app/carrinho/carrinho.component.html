@@ -28,40 +28,15 @@
     <h4>Carrinho</h4>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<br>
-<br>
-<br>
-<br>
+<div class="botaoPrincipal">
+    <button class="botaoPag" (click)="encaminhar('/pagamento')">Forma de Pagamento</button>
+    <button class="botaoPag" (click)="frete(1)">Frete<br>R$20,00</button>
+</div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-
-<button (click)="encaminhar('/pagamento')">Forma de Pagamento</button>
-<button (click)="frete(1)">Frete<br>R$20,00</button>
-
-<div *ngIf="this.contador == 1" >
+<div class="endereco" *ngIf="this.contador == 1" >
+    <div>
     <input [(ngModel)]='pais' placeholder="País">
     <input [(ngModel)]='estado' placeholder="Estado">
     <input [(ngModel)]='cidade' placeholder="Cidade">
@@ -69,8 +44,10 @@
     <input [(ngModel)]='cep' placeholder="CEP">
     <input [(ngModel)]='rua' placeholder="Rua">
     <input [(ngModel)]='numero' placeholder="Numero">
-    <button (click)="endereco()">Confirmar Endereço</button>
-    <button (click)="cancelar()">Cancelar</button>
+    <button class="botaoFrete" (click)="endereco()">Confirmar Endereço</button>
+    <button class="botaoFrete" (click)="cancelar()">Cancelar</button>
+    </div>
+    
 </div>
 
 

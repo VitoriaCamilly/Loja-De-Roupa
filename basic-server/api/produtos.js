@@ -3,21 +3,24 @@ inserirRota('/produtos',
         console.log(dados);
 
         if (!dados.nome) {
-            return resposta({ erro: 'É necessario inserir nome' })
+            return alert({ erro: 'É necessario inserir nome' })
         }
         if (!dados.codigo) {
-            return resposta({ erro: 'É necessario inserir codigo' })
+            return alert({ erro: 'É necessario inserir codigo' })
         }
         if (!dados.tipo) {
-            return resposta({ erro: 'É necessario inserir tipo' })
+            return alert({ erro: 'É necessario inserir tipo' })
         }
         if (!dados.preco) {
-            return resposta({ erro: 'É necessario inserir preco' })
+            return alert({ erro: 'É necessario inserir preco' })
+        }
+        if (!dados.url) {
+            return alert({ erro: 'É necessario inserir url' })
         }
 
-        database(`INSERT INTO PRODUTOS(NOME, CODIGO, TIPO, PRECO
+        database(`INSERT INTO PRODUTOS(NOME, CODIGO, TIPO, PRECO, URL
             )VALUES 
-        ("${dados.nome}", "${dados.codigo}", "${dados.tipo}", "${dados.preco}")`)
+        ("${dados.nome}", "${dados.codigo}", "${dados.tipo}", "${dados.preco}", "${dados.url}")`)
             .then(result => {
                 console.log('Produto Inserido com Sucesso!');
                 resposta({ message: 'Produto Inserido com Sucesso!' });
@@ -27,7 +30,6 @@ inserirRota('/produtos',
                 );
             });
     })
-
 
 inserirRota('/buscar_produtos',
     function (dados, resposta) {
@@ -45,7 +47,6 @@ inserirRota('/buscar_produtos',
 inserirRota('/buscar_produtinhos',
     function (dados, resposta) {
         console.log(dados);
-
         database(`SELECT * FROM PRODUTOS WHERE TIPO = "${dados.tipo}"`)
             .then(result => {
                 resposta({ produtinho: result})

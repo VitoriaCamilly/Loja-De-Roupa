@@ -33,7 +33,8 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTOS (
     CODIGO INT NOT NULL PRIMARY KEY,
     NOME VARCHAR(50) NOT NULL,
     TIPO VARCHAR(30) NOT NULL,
-    PRECO VARCHAR(30) NOT NULL
+    PRECO VARCHAR(30) NOT NULL,
+    URL VARCHAR(300) NOT NULL
     )`).then(result => {
     console.log('Tabela Produto Criada com Sucesso');
     //resposta({ resposta: 'TABELA CRIADA' });

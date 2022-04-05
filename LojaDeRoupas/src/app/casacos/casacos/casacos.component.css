@@ -305,3 +305,8 @@ h3 {
     color: #edb0c0;
     transition: all .5s;
 }
+
+.imagemProduto {
+    height: 350px; 
+    width: 250px;
+}

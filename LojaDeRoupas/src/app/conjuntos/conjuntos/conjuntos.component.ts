@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
   selector: 'app-conjuntos',
@@ -8,11 +9,23 @@ import { Router } from '@angular/router';
 })
 export class ConjuntosComponent implements OnInit {
 
+  nomeProduto: "";
+  lista: [0];
+
   constructor(
-    private router: Router
+    private router: Router,
+    private produtosService: ProdutosService
   ) { }
 
   ngOnInit() {
+    this.produtosService.buscarProdutos("Conjuntos")
+    .then((resultado:any) => {
+      console.log(resultado);
+      this.nomeProduto = resultado.produtinho.NOME;
+      this.lista = resultado.produtinho;
+    }).catch(erro => {
+      console.log('Erro ao buscar usuarios', erro)
+    })
   }
 
   encaminhar(caminho) {

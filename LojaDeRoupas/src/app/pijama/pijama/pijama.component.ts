@@ -11,7 +11,7 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 export class PijamaComponent implements OnInit {
 
   nomeProduto = "";
-  lista = [];
+  lista = [0];
 
   constructor(
     private produtosService : ProdutosService, 
@@ -21,17 +21,13 @@ export class PijamaComponent implements OnInit {
   ngOnInit() {
     this.produtosService.buscarProdutos("Pijamas")
     .then((resultado:any) => {
-      console.log(resultado.produtinho);
+      console.log(resultado);
       this.nomeProduto = resultado.produtinho.NOME;
-      this.lista = [resultado.produtinho];
+      this.lista = resultado.produtinho;
     }).catch(erro => {
       console.log('Erro ao buscar usuarios', erro)
     })
   }
-  
-  // addNome(codigo, resultado) {
-  //   this.nomeProduto = resultado.list[codigo].NOME;
-  // }
 
   encaminhar(caminho) {
     this.router.navigate([caminho]);
