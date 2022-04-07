@@ -73,6 +73,10 @@ export class PagamentoComponent implements OnInit {
        console.log(erro);
      })
 }
+
+insta(){
+  location.href='https://www.instagram.com/';
+}
 }
 
 

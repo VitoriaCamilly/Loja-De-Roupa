@@ -34,7 +34,9 @@ export class PijamaComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-
+  insta(){
+    location.href='https://www.instagram.com/';
+  }
 
 
 

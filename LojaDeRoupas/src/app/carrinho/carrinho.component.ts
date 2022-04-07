@@ -49,4 +49,8 @@ export class CarrinhoComponent implements OnInit {
   cancelar(){
     this.contador = 0;
   }
+
+  insta(){
+    location.href='https://www.instagram.com/';
+  }
 }

@@ -32,4 +32,8 @@ export class BlusasComponent implements OnInit {
     this.router.navigate([caminho]);
     window.scrollTo(0, 0);
   }
+
+  insta(){
+    location.href='https://www.instagram.com/';
+  }
 }
