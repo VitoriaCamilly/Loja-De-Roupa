@@ -5,7 +5,7 @@ database(`CREATE TABLE IF NOT EXISTS CLIENTE(
     SENHA VARCHAR(30) NOT NULL,
     NASCIMENTO DATE NOT NULL
     )`).then(result => {
-    console.log('Tabela Criada com Sucesso');
+    console.log('Tabela CLIENTE Criada com Sucesso');
     //resposta({ resposta: 'TABELA CRIADA' });
 }).catch(erro => {
     console.log('Tabela Com Erro');
@@ -21,7 +21,7 @@ database(`CREATE TABLE IF NOT EXISTS ENDERECO(
     ESTADO VARCHAR(100) NOT NULL,
     PAIS VARCHAR(50) NOT NULL
     )`).then(result => {
-    console.log('Tabela Criada com Sucesso');
+    console.log('Tabela ENDERECO Criada com Sucesso');
     //resposta({ resposta: 'TABELA CRIADA' });
 }).catch(erro => {
     console.log('Tabela Com Erro');
@@ -53,17 +53,32 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTOS (
 //     ON UPDATE CASCADE
 //     ON DELETE CASCADE
 //     )`).then(result => {
-//     console.log('Tabela Criada com Sucesso');
+//     console.log('Tabela CARRINHO Criada com Sucesso');
 //     //resposta({ resposta: 'TABELA CRIADA' });
 // }).catch(erro => {
 //     console.log('Tabela Com Erro');
 //     //resposta({ resposta: erro });
 // });
 
-// database(`CREATE TABLE IF NOT EXISTS PAGAMENTO (
-//     CODIGO INT NOT NULL PRIMARY KEY AUTOINCREMENT,
-//     NUMCARTAO CHAR(16),
-//     BOLETO varchar(48),
+database(`CREATE TABLE IF NOT EXISTS BOLETO (
+    CODIGO CHAR(48) NOT NULL PRIMARY KEY,
+    CARRINHO_CODIGO INT NOT NULL,
+    FOREIGN KEY (CARRINHO_CODIGO)
+    REFERENCES CARRINHO (CODIGO)
+    )`).then(result => {
+    console.log('Tabela BOLETO Criada com Sucesso');
+    //resposta({ resposta: 'TABELA CRIADA' });
+}).catch(erro => {
+    console.log('Tabela Com Erro');
+    //resposta({ resposta: erro });
+});
+
+// database(`CREATE TABLE IF NOT EXISTS CARTAO (
+//     NUMCARTAO CHAR(16) NOT NULL PRIMARY KEY,
+//     MESVALIDADE INT NOT NULL,
+//     ANOVALIDADE INT NOT NULL,
+//     CODIGOSEGURANCA CHAR(3),
+//     NOMECARTAO VARCHAR(50),
 //     CARRINHO_CODIGO INT NOT NULL,
 //     FOREIGN KEY (CARRINHO_CODIGO)
 //     REFERENCES CARRINHO (CODIGO)
@@ -80,7 +95,7 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTOS (
 //     ON UPDATE CASCADE
 //     ON DELETE CASCADE
 //     )`).then(result => {
-//     console.log('Tabela Criada com Sucesso');
+//     console.log('Tabela CARTAO Criada com Sucesso');
 //     //resposta({ resposta: 'TABELA CRIADA' });
 // }).catch(erro => {
 //     console.log('Tabela Com Erro');

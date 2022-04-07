@@ -36,30 +36,32 @@
 </div>
 
 
-<div>
-    <button (click)="pagamento(1)">Cartão de Crédito</button>
-    <button (click)="pagamento(2)">Boleto</button>
+<div class="botaoPrincipal">
+    <button class="botaoPag" (click)="pagamento(1)">Cartão de Crédito</button>
+    <button class="botaoPag" (click)="pagamento(2)">Boleto</button>
 </div>
 
-<div class="cadastro">
-    <div *ngIf="this.contador == 1">
-        <input [(ngModel)]='NumCartao' placeholder="Nome Completo">
-        <input [(ngModel)]='numSeguranca' placeholder="Data de Nascimento" type="date">
-        <div class="botoes">
-            <button (click)="confirmaPagamento()">Confirmar compra</button>
-            <button (click)="router.navigate(['/inicio'])">Cancelar</button>
+
+    <div class="endereco" *ngIf="this.contador == 1">
+        <div>
+            <input [(ngModel)]='numCartao' placeholder="Numero do Cartao">
+            <input [(ngModel)]='mesValidade' placeholder="Mês da Validade">
+            <input [(ngModel)]='anoValidade' placeholder="Ano da Validade">
+            <input [(ngModel)]='codSeguranca' placeholder="Codigo de Segurança">
+            <input [(ngModel)]='nomeCartao' placeholder="Nome do Cartão">
+            <input [(ngModel)]='email' placeholder="Confirme seu email">
+            <button class="botaoFrete" (click)="confirmaPagamento()">Confirmar compra</button>
+            <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
         </div>
     </div>
 
-    <div *ngIf="this.contador == 2">
-        <div class="botoes">
-            {{boleto}}
-            <button (click)="confirmaPagamento()">Confirmar compra</button>
-            <button (click)="router.navigate(['/inicio'])">Cancelar</button>
+    <div class="endereco" *ngIf="this.contador == 2">
+        <div>
+            <span class="boleto">{{boletinho}}</span>
+            <button class="botaoFrete" (click)="boletoFinal()">Confirmar compra</button>
+            <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
         </div>
     </div>
-
-</div>
 
 
 <footer>

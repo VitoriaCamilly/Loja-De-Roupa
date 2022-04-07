@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PagamentoService } from '../services/pagamento.service';
+import { BoletoService } from '../services/boleto.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -11,10 +11,15 @@ export class PagamentoComponent implements OnInit {
 
   contador = 0;
   boleto = null;
-  
+  maximo = 48;
+  i = 0;
+  lista = [];
+  boletinho = "";
+  codigo = "";
+  carrinho_codigo = null;
 
   constructor(
-    private pagamentoService: PagamentoService,
+    private boletoService: BoletoService,
     private router: Router
   ) { }
 
@@ -26,10 +31,10 @@ export class PagamentoComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  confirmaPagamento(){
+  confirmaPagamento() {
     // this.pagamentoService.confirma(this.nome, this.email, this.senha, this.nascimento)
     //   .then((resultado: any) => {
-        
+
     //     alert("Você foi cadastrado!")
     //     if (resultado.cliente){
     //       this.router.navigate(['/login'])
@@ -41,40 +46,37 @@ export class PagamentoComponent implements OnInit {
     //   })
   }
 
-  pagamento(cont){
+  pagamento(cont) {
     this.contador = cont;
     if (cont == 2) {
       this.gerarBoleto();
     }
   }
-
-  maximo = 48;
-  i = 0;
-  lista = [];
-  p = null;
-  n = null;
-  tmp = null;
-
-  gerarBoleto(){
-    for (this.i = 0; this.i <= 48; this.i++) {
+  
+  gerarBoleto() {
+    for (this.i = 0; this.i < this.maximo; this.i++) {
       this.boleto = Math.floor(Math.random() * 10);
+      this.lista.push(this.boleto);
     }
 
-  //   for (this.i = 0; this.i < this.maximo; this.i++) {
-  //     this.lista[this.i] = this.i + 1;
-  //   }
-
-  //   for (this.p = this.lista.length; this.p;) {
-  //     this.n = Math.random() * this.p-- | 0;
-  //     this.tmp = this.lista[this.n];
-  //     this.lista[this.n] = this.lista[this.p];
-  //     this.lista[this.p] = this.tmp;
-  // }
-   
+    for (let i = 0; i < 48; i++) {
+      this.boletinho += this.lista[i];
+    }
   }
 
-
-
-  
-
+  boletoFinal(){
+    this.boletoService.boleto(this.codigo, this.carrinho_codigo)
+     .then((resultado = null) => {
+      alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!")
+       this.router.navigate(['/pagamento'])
+      }).catch((erro: any) => {
+       console.log(erro);
+     })
 }
+}
+
+
+
+
+
+

@@ -3,25 +3,25 @@ inserirRota('/endereco',
         console.log(dados);
 
         if (!dados.pais) {
-            return resposta({ erro: 'É necessario inserir pais' })
+            return alert({ erro: 'É necessario inserir pais' })
         }
         if (!dados.estado) {
-            return resposta({ erro: 'É necessario inserir estado' })
+            return alert({ erro: 'É necessario inserir estado' })
         }
         if (!dados.cidade) {
-            return resposta({ erro: 'É necessario inserir cidade' })
+            return alert({ erro: 'É necessario inserir cidade' })
         }
         if (!dados.bairro) {
-            return resposta({ erro: 'É necessario inserir bairro' })
+            return alert({ erro: 'É necessario inserir bairro' })
         }
         if (!dados.cep) {
-            return resposta({ erro: 'É necessario inserir cep' })
+            return alert({ erro: 'É necessario inserir cep' })
         }
         if (!dados.rua) {
-            return resposta({ erro: 'É necessario inserir rua' })
+            return alert({ erro: 'É necessario inserir rua' })
         }
         if (!dados.numero) {
-            return resposta({ erro: 'É necessario inserir numero' })
+            return alert({ erro: 'É necessario inserir numero' })
         }
 
         database(`INSERT INTO ENDERECO(PAIS, ESTADO, CIDADE, BAIRRO, CEP, RUA, NUMERO
@@ -29,10 +29,10 @@ inserirRota('/endereco',
         ("${dados.pais}", "${dados.estado}", "${dados.cidade}", "${dados.bairro}", "${dados.cep}", "${dados.rua}", "${dados.numero}")`)
             .then(result => {
                 console.log('Endereço Inserido com Sucesso!');
-                resposta({ message: 'Endereço Inserido com Sucesso!' });
+                alert({ message: 'Endereço Inserido com Sucesso!' });
             }).catch(erro => {
                 console.log('Erro ao inserir o Endereço!1', erro);
-                resposta({ erro: 'Erro ao inserir o Endereço!2' }
+                alert({ erro: 'Erro ao inserir o Endereço!2' }
                 );
             });
     })
