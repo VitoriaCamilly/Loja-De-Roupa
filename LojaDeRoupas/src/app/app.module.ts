@@ -30,6 +30,7 @@ import {
   LinkedinLoginProvider,
   VkontakteLoginProvider,
 } from "angular-6-social-login-v2";
+import { SinginComponent } from './singin/singin.component';
 
 
 const routes: Routes = [
@@ -73,7 +74,8 @@ export function getAuthServiceConfigs() {
   declarations: [
     AppComponent,
     CarrinhoComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    SinginComponent
   ],
   imports: [
     BrowserModule,
