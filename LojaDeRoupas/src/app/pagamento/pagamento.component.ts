@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BoletoService } from '../services/boleto.service';
+import { CartaoService } from '../services/cartao.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -9,18 +10,22 @@ import { BoletoService } from '../services/boleto.service';
 })
 export class PagamentoComponent implements OnInit {
 
-  contador = 0;
-  boleto = null;
-  maximo = 48;
-  i = 0;
+
   lista = [];
   boletinho = "";
   codigo = "";
   carrinho_codigo = null;
+  numCartao = "";
+  mesValidade = null;
+  anoValidade = null;
+  codigoSeguranca = ""; 
+  nomeCartao = "";
+  cliente_email =  "";
 
   constructor(
     private boletoService: BoletoService,
-    private router: Router
+    private router: Router,
+    private cartaoService: CartaoService
   ) { }
 
   ngOnInit() {
@@ -31,20 +36,44 @@ export class PagamentoComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  confirmaPagamento() {
-    // this.pagamentoService.confirma(this.nome, this.email, this.senha, this.nascimento)
-    //   .then((resultado: any) => {
-
-    //     alert("Você foi cadastrado!")
-    //     if (resultado.cliente){
-    //       this.router.navigate(['/login'])
-    //     } else {
-    //       console.log("Não fez login");
-    //     }
-    //   }).catch((erro: any) => {
-    //     console.log(erro);
-    //   })
+  confirmaPagamentoCartao() {
+    this.cartaoService.cadastroCartao(this.numCartao, this.mesValidade, this.anoValidade, this.codigoSeguranca, this.nomeCartao, this.cliente_email, this.carrinho_codigo)
+      .then((resultado: any) => {
+        if (this.numCartao != ""){
+          if (this.mesValidade != null) {
+            if (this.anoValidade != null) {
+              if (this.codigoSeguranca != "") {
+                if (this.nomeCartao != "") {
+                  if (this.cliente_email != "") {
+                    alert("Pagamento efetuado!")
+                    this.router.navigate(["/inicio"])
+                  } else {
+                    alert("Precisa informar o email!")
+                  }
+                }else {
+                  alert("Precisa informar o nome no Cartão!")
+                }
+              }else {
+                alert("Precisa informar o Código de Segurança!")
+              }
+            }else {
+              alert("Precisa informar o Ano de Validade do Cartao!")
+            }
+          }else {
+            alert("Precisa informar o Mês de validade do Cartão!")
+          }
+        }else {
+          alert("Precisa informar o número do Cartão!")
+        }
+      }).catch((erro: any) => {
+        alert("Cartão não Registrado!");
+      })
   }
+
+  contador = 0;
+  boleto = null;
+  maximo = 48;
+  i = 0;
 
   pagamento(cont) {
     this.contador = cont;
@@ -52,8 +81,9 @@ export class PagamentoComponent implements OnInit {
       this.gerarBoleto();
     }
   }
-  
+
   gerarBoleto() {
+    this.boletinho = "";
     for (this.i = 0; this.i < this.maximo; this.i++) {
       this.boleto = Math.floor(Math.random() * 10);
       this.lista.push(this.boleto);
@@ -64,19 +94,25 @@ export class PagamentoComponent implements OnInit {
     }
   }
 
-  boletoFinal(){
+  boletoFinal() {
     this.boletoService.boleto(this.codigo, this.carrinho_codigo)
-     .then((resultado = null) => {
-      alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!")
-       this.router.navigate(['/pagamento'])
+      .then((resultado = null) => {
+        alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!")
+        this.router.navigate(['/pagamento'])
       }).catch((erro: any) => {
-       console.log(erro);
-     })
-}
+        console.log(erro);
+      })
+  }
 
-insta(){
-  location.href='https://www.instagram.com/';
-}
+  insta() {
+    location.href = 'https://www.instagram.com/';
+  }
+
+  logout() {
+    localStorage.removeItem("EMAIL");
+    localStorage.removeItem("SENHA");
+    this.router.navigate(['']);
+  }
 }
 
 

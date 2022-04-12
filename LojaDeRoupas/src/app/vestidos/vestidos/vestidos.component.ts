@@ -37,4 +37,10 @@ export class VestidosComponent implements OnInit {
     location.href='https://www.instagram.com/';
   }
 
+  logout(){
+    localStorage.removeItem("EMAIL");
+    localStorage.removeItem("SENHA");
+    this.router.navigate(['']);
+  }
+
 }

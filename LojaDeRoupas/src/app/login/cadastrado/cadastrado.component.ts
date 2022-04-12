@@ -21,16 +21,15 @@ export class CadastradoComponent implements OnInit {
   senha = '';
 
   login() {
-    this.clienteService.login(this.email, this.senha)
-      .then((resultado: any) => {
-        if (resultado.cliente){
-          this.router.navigate(['/inicio']);
-        } else {
-          alert("Usuário e/ou login incorreto");
-        }
-      }).catch((erro: any) => {
-        console.log(erro);
-      })
+    this.clienteService.checarUser(this.email, this.senha)
+    .then((resultado: any) => {
+      if (resultado != "") {
+        localStorage.setItem("EMAIL", this.email)
+        localStorage.setItem("SENHA", this.senha)
+          this.router.navigate(['/inicio'])
+      }
+    }).catch((erro: any) => {
+      console.log(erro);
+    })
   }
-
 }

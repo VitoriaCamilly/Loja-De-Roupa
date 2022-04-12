@@ -28,8 +28,6 @@ inserirRota('/buscar_usuario',
 inserirRota('/criar_usuario',
     function (dados, resposta) {
         console.log(dados);
-
-
         if (!dados.nome) {
             return resposta({ erro: 'É necessario inserir nome' })
         }
@@ -42,9 +40,6 @@ inserirRota('/criar_usuario',
         if (!dados.email) {
             return resposta({ erro: 'É necessario inserir email' })
         }
-        
-
-
         database(`INSERT INTO CLIENTE(NOME,
         EMAIL, SENHA, NASCIMENTO
             )VALUES 
@@ -57,6 +52,16 @@ inserirRota('/criar_usuario',
                 resposta({ erro: 'Erro ao inserir o Usuario!' }
                 );
             });
+    })
+
+    inserirRota('/checar_user', function(dados, resposta) {
+        database(`SELECT * FROM CLIENTE where EMAIL = "${dados.email}" AND SENHA = "${dados.senha}"`)
+            .then(result => {
+                resposta(result)
+            }).catch(erro => {
+                console.log('ERRO AO CHECAR USUÁRIO! ')
+                resposta({ erro })
+            })
     })
 
 // fetch('/api/login',

@@ -36,4 +36,10 @@ export class BlusasComponent implements OnInit {
   insta(){
     location.href='https://www.instagram.com/';
   }
+
+  logout(){
+    localStorage.removeItem("EMAIL");
+    localStorage.removeItem("SENHA");
+    this.router.navigate(['']);
+  }
 }

@@ -38,7 +38,7 @@ export class ClienteService {
           method: 'POST',
           body: JSON.stringify(
             {
-              nome:nome, email: email, senha: senha, nascimento:nascimento
+              nome: nome, email: email, senha: senha, nascimento: nascimento
             }
           ),
           headers: {
@@ -51,6 +51,19 @@ export class ClienteService {
         console.log(erro);
         rejeitado(erro);
       })
+    })
+  }
+  checarUser(email, senha) {
+    return new Promise((resolve, reject) => {
+      fetch('/api/checar_user',
+        {
+          method: 'POST',
+          body: JSON.stringify({ email, senha }),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
     })
   }
 }
