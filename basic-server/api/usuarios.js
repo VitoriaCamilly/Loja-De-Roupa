@@ -64,27 +64,12 @@ inserirRota('/criar_usuario',
             })
     })
 
-// fetch('/api/login',
-//     {
-//         method: 'POST   ',
-//         body: JSON.stringify(
-//             {
-//                 nome: "Camilly", sobrenome: "Vitoria", senha: '123'//this.password
-//             }
-//         ),
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     }
-// ).then(function(result){
-//     return result.json();
-// }).then(function(dados){
-//     if(dados.list.length == 1) {
-//         console.log(dados);
-//         alert("Login Efetuado");
-//     } else {
-//         alert("Login Incorreto");
-//     }
-// }).catch(function(erro){
-//     console.log(erro);
-// })
+    inserirRota('/checar_google', function(dados, resposta) {
+        database(`SELECT * FROM CLIENTE where EMAIL = "${dados.email}"`)
+            .then(result => {
+                resposta(result)
+            }).catch(erro => {
+                console.log('ERRO AO CHECAR USUÁRIO! ')
+                resposta({ erro })
+            })
+    })

@@ -55,3 +55,15 @@ inserirRota('/buscar_produtinhos',
             });
     }
 );
+
+inserirRota('/buscar_produtosdocarinho',
+    function (dados, resposta) {
+        console.log(dados);
+        database(`SELECT * FROM PRODUTOS WHERE CODIGO = "${dados.codigo}"`)
+            .then(result => {
+                resposta({ produtinho: result})
+            }).catch(erro => {
+                resposta({ erro: 'Erro ao buscar usuario!' })
+            });
+    }
+);

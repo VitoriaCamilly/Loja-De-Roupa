@@ -29,6 +29,37 @@
     <h4>Carrinho</h4>
 </div>
 
+<div class="mar" *ngFor="let teste of lista">
+    <div class="produto">
+        <div class="item">
+            <img class="imagemProduto"
+                [src]="teste.URL">
+        </div>
+        <div class="conteudo">
+            <div class="titulo">
+                {{teste.NOME}} 
+            </div>
+
+            <div class="botoes">
+                <button class="botao">4</button>
+                <button class="botao">6</button>
+                <button class="botao">8</button>
+                <button class="botao">10</button>
+                <button class="botao">12</button>
+            </div>
+
+            <div class="preco">
+                <span class="cifrao">R$</span>
+                <span class="valor">{{teste.PRECO}}</span>
+            </div>
+
+            <div class="detalhes">
+                <button (click)="addCarrinho(teste.CODIGO)" class="detalhe">Comprar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="botaoPrincipal">
     <button class="botaoPag" (click)="encaminhar('/pagamento')">Forma de Pagamento</button>

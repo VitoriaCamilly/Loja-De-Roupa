@@ -43,4 +43,8 @@ export class VestidosComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  addCarrinho(){
+    
+  }
+
 }

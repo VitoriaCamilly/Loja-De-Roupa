@@ -25,13 +25,8 @@ import CheckLogged from './CheckLogged';
 import {
   SocialLoginModule,
   AuthServiceConfig,
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-  LinkedinLoginProvider,
-  VkontakteLoginProvider,
+  GoogleLoginProvider
 } from "angular-6-social-login-v2";
-import { SinginComponent } from './singin/singin.component';
-
 
 const routes: Routes = [
   { path: '', component: CadastroComponent, canActivate: []}, 
@@ -50,21 +45,9 @@ export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
       [
         {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider("Your-Facebook-app-id")
-        },
-        {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider("Your-Google-Client-Id")
-        },
-        {
-          id: VkontakteLoginProvider.PROVIDER_ID,
-          provider: new VkontakteLoginProvider("Your-VK-Client-Id")
-        },        
-          {
-            id: LinkedinLoginProvider.PROVIDER_ID,
-            provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
-          },
+          provider: new GoogleLoginProvider("34914503001-2d05lgpnjmqjv929h574m82frjfr3a0u.apps.googleusercontent.com")
+        }
       ]
   );
   return config;
@@ -74,8 +57,7 @@ export function getAuthServiceConfigs() {
   declarations: [
     AppComponent,
     CarrinhoComponent,
-    PagamentoComponent,
-    SinginComponent
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,

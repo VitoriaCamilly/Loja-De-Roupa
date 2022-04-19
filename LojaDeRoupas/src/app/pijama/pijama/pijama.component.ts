@@ -44,4 +44,8 @@ export class PijamaComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  addCarrinho(){
+    
+  }
+
 }

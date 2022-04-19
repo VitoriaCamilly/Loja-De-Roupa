@@ -66,4 +66,19 @@ export class ClienteService {
         .catch(reject)
     })
   }
+  checarGoogle(email) {
+    return new Promise((resolve, reject) => {
+      fetch('/api/checar_google',
+        {
+          method: 'POST',
+          body: JSON.stringify({ email }),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
+
 }

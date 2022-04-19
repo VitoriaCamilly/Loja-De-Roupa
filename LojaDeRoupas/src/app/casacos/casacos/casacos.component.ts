@@ -42,4 +42,8 @@ export class CasacosComponent implements OnInit {
     localStorage.removeItem("SENHA");
     this.router.navigate(['']);
   }
+
+  addCarrinho(){
+    
+  }
 }
