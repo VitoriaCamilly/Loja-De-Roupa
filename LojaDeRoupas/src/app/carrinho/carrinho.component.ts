@@ -24,8 +24,8 @@ export class CarrinhoComponent implements OnInit {
       .then((resultado: any) => {
         console.log("1",resultado);
         for(let teste of resultado){
-          console.log(teste.CODIGO)
-          this.produtosService.buscarCarinho(teste.CODIGO)
+          console.log(teste.PRODUTOS_CODIGO)
+          this.produtosService.buscarCarinho(teste.PRODUTOS_CODIGO)
       .then((resultado: any) => {
         console.log("2",resultado);
         this.nomeProduto = resultado.produtinho.NOME;
