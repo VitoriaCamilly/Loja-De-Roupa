@@ -11,7 +11,7 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
 export class BlusasComponent implements OnInit {
 
   nomeProduto: "";
-  lista: [0];
+  lista = [{ PRECO: "" }];
 
   constructor(
     private router: Router,
@@ -46,24 +46,37 @@ export class BlusasComponent implements OnInit {
   }
 
   addCarrinho(codigo) {
-    this.carrinhoService.checarProduto(codigo)
-      .then((resultado: any) => {
-        if (resultado == "") {
-          this.carrinhoService.carrinho(1, 1, localStorage.getItem("EMAIL"), codigo)
-            .then((resultado: any) => {
-              console.log(resultado);
-              console.log(codigo);
-              alert("Produto adicionado ao carrinho!");
-            }).catch(erro => {
-              console.log('Erro ao buscar usuarios', erro)
-            })
-        } else {
-          alert("Produto ja esta no carrinho")
-        }
-      }).catch(erro => {
-        console.log('Erro ao buscar usuarios', erro)
-      })
+    if (!localStorage.getItem("Carrinho")) {
+      console.log("if 1")
+      localStorage.setItem("Codigo", codigo);
+      this.carrinhoService.addCarrinhoTemp(1, parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")), localStorage.getItem("EMAIL"), codigo)
+    } else {
+      console.log("if else2")
+      console.log(JSON.stringify(localStorage.getItem("Carrinho")));
+    }
 
 
+
+
+
+    // console.log("bbbb");
+    // this.carrinhoService.checarProduto(codigo)
+    //   .then((resultado: any) => {
+    //     console.log(resultado);
+    //     if (resultado == "") {
+
+    // .then((resultado: any) => {
+    //   console.log(resultado);
+    //   console.log(codigo);
+    //   alert("Produto adicionado ao carrinho!");
+    // }).catch(erro => {
+    //   console.log('Erro ao buscar usuarios', erro)
+    // })
+    //   } else {
+    //     alert("Produto ja esta no carrinho")
+    //   }
+    // }).catch(erro => {
+    //   console.log('Erro ao buscar usuarios', erro)
+    // })
   }
 }

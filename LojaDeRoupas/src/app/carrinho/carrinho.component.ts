@@ -17,19 +17,21 @@ export class CarrinhoComponent implements OnInit {
   ) { }
   
   nomeProduto: "";
-  lista: [0];
+  lista = [{PRECO: ""}];
 
   ngOnInit() {
+    
     this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
-      .then((resultado: any) => {
-        console.log("1",resultado);
-        for(let teste of resultado){
-          console.log(teste.PRODUTOS_CODIGO)
-          this.produtosService.buscarCarinho(teste.PRODUTOS_CODIGO)
-      .then((resultado: any) => {
-        console.log("2",resultado);
-        this.nomeProduto = resultado.produtinho.NOME;
-        this.lista = resultado.produtinho;
+    .then((resultado: any) => {
+      console.log("1",resultado);
+      for(let teste of resultado){
+        console.log(teste.PRODUTOS_CODIGO)
+        this.produtosService.buscarCarinho(teste.PRODUTOS_CODIGO)
+        .then((resultado: any) => {
+          console.log("2",resultado);
+          this.nomeProduto = resultado.produtinho.NOME;
+          this.lista = resultado.produtinho;
+          console.log("lista:", this.lista)
       }).catch(erro => {
         console.log('Erro ao buscar usuarios', erro)
       })
@@ -51,6 +53,7 @@ export class CarrinhoComponent implements OnInit {
   qtdd = null;
   precofinal = null;
   produtos_codigo = null;
+  quantidade=1;
 
 
   encaminhar(caminho) {
@@ -65,11 +68,14 @@ export class CarrinhoComponent implements OnInit {
   endereco() {
     this.carrinhoService.endereco(this.pais, this.estado, this.cidade, this.bairro, this.cep, this.rua, this.numero)
       .then((resultado = null) => {
-        alert("Endereço adicionado ao frete com sucesso!")
-        this.router.navigate(['/pagamento'])
+        
       }).catch((erro: any) => {
         console.log(erro);
       })
+      console.log("teste: ",parseFloat(localStorage.getItem("PrecoFinal")) + 20)
+        localStorage.setItem("PrecoFinal",JSON.stringify(parseFloat(localStorage.getItem("PrecoFinal")) + 20));
+        alert("Endereço adicionado ao frete com sucesso!")
+        this.router.navigate(['/pagamento'])
   }
 
   // carrinho() {
@@ -81,6 +87,13 @@ export class CarrinhoComponent implements OnInit {
   //       console.log(erro);
   //     })
   // }
+
+  atualizarPrecoFinal(){
+    console.log(this.lista[0].PRECO, this.quantidade);
+    let precoFinalTemp = parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")) 
+    localStorage.setItem("PrecoFinal", JSON.stringify(precoFinalTemp * this.quantidade)) 
+    localStorage.setItem("Quantidade", JSON.stringify(this.quantidade));
+  }
 
   cancelar() {
     this.contador = 0;

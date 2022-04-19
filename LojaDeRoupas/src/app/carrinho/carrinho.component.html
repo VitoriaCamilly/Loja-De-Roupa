@@ -54,7 +54,7 @@
             </div>
 
             <div class="detalhes">
-                <button (click)="addCarrinho(teste.CODIGO)" class="detalhe">Comprar</button>
+                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal()" type="number" min = 1>
             </div>
         </div>
     </div>

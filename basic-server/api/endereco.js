@@ -3,14 +3,11 @@ inserirRota('/endereco',
         console.log(dados);
         database(`INSERT INTO ENDERECO(PAIS, ESTADO, CIDADE, BAIRRO, CEP, RUA, NUMERO
             )VALUES 
-        ("${dados.pais}", "${dados.estado}", "${dados.cidade}", "${dados.bairro}", "${dados.cep}", "${dados.rua}", "${dados.numero}")`)
+        ("${dados.pais}", "${dados.estado}", "${dados.cidade}", "${dados.bairro}", "${dados.cep}", "${dados.rua}", ${dados.numero})`)
             .then(result => {
                 console.log('Endereço Inserido com Sucesso!');
-                alert({ message: 'Endereço Inserido com Sucesso!' });
             }).catch(erro => {
                 console.log('Erro ao inserir o Endereço!1', erro);
-                alert({ erro: 'Erro ao inserir o Endereço!2' }
-                );
             });
     })
 

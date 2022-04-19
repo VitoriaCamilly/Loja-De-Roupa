@@ -29,6 +29,10 @@
     <h4>Pagamento</h4>
 </div>
 
+<div>
+    <h2>Seu preço final é de: R${{getPrecoFinal()}}</h2>
+</div>
+
 
 <div class="botaoPrincipal">
     <button class="botaoPag" (click)="pagamento(1)">Cartão de Crédito</button>
@@ -41,9 +45,9 @@
             <input [(ngModel)]='numCartao' placeholder="Numero do Cartao">
             <input [(ngModel)]='mesValidade' placeholder="Mês da Validade">
             <input [(ngModel)]='anoValidade' placeholder="Ano da Validade">
-            <input [(ngModel)]='codSeguranca' placeholder="Codigo de Segurança">
+            <input [(ngModel)]='codigoSeguranca' placeholder="Codigo de Segurança">
             <input [(ngModel)]='nomeCartao' placeholder="Nome do Cartão">
-            <input [(ngModel)]='email' placeholder="Confirme seu email">
+            <input [(ngModel)]='cliente_email' placeholder="Confirme seu email">
             <button class="botaoFrete" (click)="confirmaPagamentoCartao()">Confirmar compra</button>
             <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
         </div>

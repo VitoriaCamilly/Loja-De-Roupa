@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BoletoService } from '../services/boleto.service';
 import { CartaoService } from '../services/cartao.service';
+import { CarrinhoService } from '../services/carrinho.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -25,10 +26,15 @@ export class PagamentoComponent implements OnInit {
   constructor(
     private boletoService: BoletoService,
     private router: Router,
-    private cartaoService: CartaoService
+    private cartaoService: CartaoService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
+  }
+
+  getPrecoFinal(){
+    return localStorage.getItem("PrecoFinal");
   }
 
   encaminhar(caminho) {
@@ -46,6 +52,7 @@ export class PagamentoComponent implements OnInit {
                 if (this.nomeCartao != "") {
                   if (this.cliente_email != "") {
                     alert("Pagamento efetuado!")
+                    this.carrinhoService.carrinho(parseInt(localStorage.getItem("Quantidade")), parseFloat(localStorage.getItem("PrecoFinal")), localStorage.getItem("EMAIL"), localStorage.getItem("Codigo"));
                     this.router.navigate(["/inicio"])
                   } else {
                     alert("Precisa informar o email!")

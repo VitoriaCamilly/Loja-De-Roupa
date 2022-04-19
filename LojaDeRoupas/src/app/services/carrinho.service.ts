@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   endereco(pais, estado, cidade, bairro, cep, rua, numero) {
     return new Promise((resolvido, rejeitado) => {
@@ -97,6 +100,11 @@ export class CarrinhoService {
         rejeitado(erro);
       })
     })
+  }
+
+  addCarrinhoTemp(qtdd, precofinal, email_cliente, produtos_codigo){
+    localStorage.setItem("Carrinho", JSON.stringify({ qtdd:qtdd, precofinal:precofinal, email_cliente:email_cliente, produtos_codigo:produtos_codigo}));
+    this.router.navigate(['/carrinho']);
   }
 
 }
