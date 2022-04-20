@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { $ } from 'protractor';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
@@ -11,11 +12,12 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 export class PijamaComponent implements OnInit {
 
   nomeProduto = "";
-  lista = [0];
+  lista = [{PRECO: ""}];
 
   constructor(
     private produtosService : ProdutosService, 
-    private router: Router
+    private router: Router,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -44,8 +46,14 @@ export class PijamaComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  addCarrinho(){
-    
+  addCarrinho(codigo) {
+    if (!localStorage.getItem("Carrinho")) {
+      console.log("if 1")
+      localStorage.setItem("Codigo", codigo);
+      this.carrinhoService.addCarrinhoTemp(1, parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")), localStorage.getItem("EMAIL"), codigo)
+    } else {
+      console.log("if else2")
+      console.log(JSON.stringify(localStorage.getItem("Carrinho")));
+    }
   }
-
 }

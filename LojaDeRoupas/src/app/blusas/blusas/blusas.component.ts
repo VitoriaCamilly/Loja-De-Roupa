@@ -54,29 +54,5 @@ export class BlusasComponent implements OnInit {
       console.log("if else2")
       console.log(JSON.stringify(localStorage.getItem("Carrinho")));
     }
-
-
-
-
-
-    // console.log("bbbb");
-    // this.carrinhoService.checarProduto(codigo)
-    //   .then((resultado: any) => {
-    //     console.log(resultado);
-    //     if (resultado == "") {
-
-    // .then((resultado: any) => {
-    //   console.log(resultado);
-    //   console.log(codigo);
-    //   alert("Produto adicionado ao carrinho!");
-    // }).catch(erro => {
-    //   console.log('Erro ao buscar usuarios', erro)
-    // })
-    //   } else {
-    //     alert("Produto ja esta no carrinho")
-    //   }
-    // }).catch(erro => {
-    //   console.log('Erro ao buscar usuarios', erro)
-    // })
   }
 }

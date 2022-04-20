@@ -20,18 +20,13 @@ export class CarrinhoComponent implements OnInit {
   lista = [{PRECO: ""}];
 
   ngOnInit() {
-    
     this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
     .then((resultado: any) => {
-      console.log("1",resultado);
       for(let teste of resultado){
-        console.log(teste.PRODUTOS_CODIGO)
         this.produtosService.buscarCarinho(teste.PRODUTOS_CODIGO)
         .then((resultado: any) => {
-          console.log("2",resultado);
           this.nomeProduto = resultado.produtinho.NOME;
           this.lista = resultado.produtinho;
-          console.log("lista:", this.lista)
       }).catch(erro => {
         console.log('Erro ao buscar usuarios', erro)
       })

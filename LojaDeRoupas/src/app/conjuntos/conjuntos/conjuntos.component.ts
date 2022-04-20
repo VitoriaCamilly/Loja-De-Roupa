@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 export class ConjuntosComponent implements OnInit {
 
   nomeProduto: "";
-  lista: [0];
+  lista: [{PRECO: ""}];
 
   constructor(
     private router: Router,
-    private produtosService: ProdutosService
+    private produtosService: ProdutosService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,14 @@ export class ConjuntosComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  addCarrinho(){
-    
+  addCarrinho(codigo) {
+    if (!localStorage.getItem("Carrinho")) {
+      console.log("if 1")
+      localStorage.setItem("Codigo", codigo);
+      this.carrinhoService.addCarrinhoTemp(1, parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")), localStorage.getItem("EMAIL"), codigo)
+    } else {
+      console.log("if else2")
+      console.log(JSON.stringify(localStorage.getItem("Carrinho")));
+    }
   }
 }
