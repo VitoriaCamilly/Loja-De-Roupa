@@ -11,6 +11,30 @@ inserirRota('/carrinho',
             });
 });
 
+inserirRota('/confirmarCarrinho', 
+function (dados, resposta){
+    console.log('fdsddfds',dados.email_cliente)
+    database(`DELETE FROM CARRINHO WHERE EMAIL_CLIENTE = "${dados.email_cliente}"`)
+    .then(result => {
+        console.log("Tabela removida")
+    }). catch (erro =>{
+        console.log('Erro ao excluir tabela')
+    })
+}
+)
+
+inserirRota('/removerCarrinho', 
+function (dados, resposta){
+    console.log('fdsddfds',dados.email_cliente, dados.produtos_codigo)
+    database(`DELETE FROM CARRINHO WHERE EMAIL_CLIENTE = "${dados.email_cliente}" AND PRODUTOS_CODIGO = "${dados.produtos_codigo}"`)
+    .then(result => {
+        console.log("Tabela removida")
+    }). catch (erro =>{
+        console.log('Erro ao excluir tabela')
+    })
+}
+)
+
 inserirRota('/buscar_carrinho',
 function (dados, resposta) {
     console.log(dados);
@@ -38,6 +62,17 @@ inserirRota('/checar_produto', function(dados, resposta) {
             resposta(result)
         }).catch(erro => {
             console.log('ERRO AO CHECAR produto! ')
+            resposta({ erro })
+        })
+})
+
+inserirRota('/Trocar_Quantidade', function(dados, resposta) {
+    console.log(dados.quantidade, dados.produtos_codigo);
+    database(`UPDATE CARRINHO SET QTDD = "${dados.quantidade}" WHERE PRODUTOS_CODIGO = "${dados.produtos_codigo}"`)
+        .then(result => {
+            resposta(result)
+        }).catch(erro => {
+            console.log('ERRO AO quantidade produto! ')
             resposta({ erro })
         })
 })

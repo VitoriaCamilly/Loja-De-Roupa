@@ -40,19 +40,27 @@ export class BlusasComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem("EMAIL");
-    localStorage.removeItem("SENHA");
+    localStorage.clear();
     this.router.navigate(['']);
   }
 
   addCarrinho(codigo) {
-    if (!localStorage.getItem("Carrinho")) {
-      console.log("if 1")
-      localStorage.setItem("Codigo", codigo);
-      this.carrinhoService.addCarrinhoTemp(1, parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")), localStorage.getItem("EMAIL"), codigo)
-    } else {
-      console.log("if else2")
-      console.log(JSON.stringify(localStorage.getItem("Carrinho")));
-    }
+    this.carrinhoService.checarProduto(codigo)
+      .then((resultado: any) => {
+        if (resultado == "") {
+          this.carrinhoService.carrinho(1, 1, localStorage.getItem("EMAIL"), codigo)
+            .then((resultado: any) => {
+              console.log(resultado);
+              console.log(codigo);
+              alert("Produto adicionado ao carrinho!");
+            }).catch(erro => {
+              console.log('Erro ao buscar usuarios', erro)
+            })
+        } else {
+          alert("Produto ja esta no carrinho")
+        }
+      }).catch(erro => {
+        console.log('Erro ao buscar usuarios', erro)
+      })
   }
 }

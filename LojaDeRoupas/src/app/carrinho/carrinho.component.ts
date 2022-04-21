@@ -19,19 +19,41 @@ export class CarrinhoComponent implements OnInit {
   nomeProduto: "";
   lista = [{PRECO: ""}];
 
+
+  // this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
+  //   .then((resultado: any) => {
+  //     let listinha = resultado as [];
+  //     for(let i = 0; i < listinha.length; i++){
+  //     console.log(resultado[i].PRODUTOS_CODIGO);
+  //     }
+  //     this.nomeProduto = resultado;
+  //     this.lista = resultado.produtinho;
+  //   }).catch(erro => {
+  //     console.log('Erro ao buscar usuarios', erro)
+  //   })
+
   ngOnInit() {
+    localStorage.setItem("PrecoFinal", "0")
     this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
     .then((resultado: any) => {
-      for(let teste of resultado){
-        this.produtosService.buscarCarinho(teste.PRODUTOS_CODIGO)
-        .then((resultado: any) => {
-          this.nomeProduto = resultado.produtinho.NOME;
-          this.lista = resultado.produtinho;
+      for(let i = 0; i < resultado.length; i++){
+        console.log("1",resultado[i])
+        this.produtosService.buscarCarinho(resultado[i].PRODUTOS_CODIGO)
+        .then((resultado2: any) => {
+          this.nomeProduto = resultado2.produtinho.NOME;
+          console.log(i,resultado2.produtinho)
+          this.lista[i] = resultado2.produtinho[0];
+
+          
+          let precoFinalTemp = parseFloat(localStorage.getItem("PrecoFinal")) + ((parseFloat(resultado2.produtinho[0].PRECO.replace("R$", "").replace(",", "."))*this.quantidade)) 
+          localStorage.setItem("PrecoFinal", JSON.stringify(precoFinalTemp));
+          localStorage.setItem("Quantidade", JSON.stringify(this.quantidade));
+
+
       }).catch(erro => {
         console.log('Erro ao buscar usuarios', erro)
       })
-        }
-        
+       } 
       }).catch(erro => {
         console.log('Erro ao buscar usuarios', erro)
       })
@@ -58,11 +80,12 @@ export class CarrinhoComponent implements OnInit {
 
   frete(cont) {
     this.contador = cont;
+    console.log(this.lista[0][0].CODIGO);
   }
 
   endereco() {
     this.carrinhoService.endereco(this.pais, this.estado, this.cidade, this.bairro, this.cep, this.rua, this.numero)
-      .then((resultado = null) => {
+      .then((resultado: any) => {
         
       }).catch((erro: any) => {
         console.log(erro);
@@ -72,6 +95,21 @@ export class CarrinhoComponent implements OnInit {
         alert("Endereço adicionado ao frete com sucesso!")
         this.router.navigate(['/pagamento'])
   }
+
+  removerCarrinho(codigo){
+    location.reload()
+    console.log(localStorage.getItem("EMAIL"), codigo)
+    this.carrinhoService.removerCarrinho(localStorage.getItem("EMAIL"), codigo)
+    .then((resultado: any) => {
+        
+        console.log("REMOVEU", resultado)
+    }).catch((erro: any) => {
+      console.log(erro);
+    })
+    
+  }
+
+
 
   // carrinho() {
   //   this.carrinhoService.carrinho(this.qtdd, this.precofinal, localStorage.getItem("EMAIL"), this.produtos_codigo)
@@ -83,11 +121,16 @@ export class CarrinhoComponent implements OnInit {
   //     })
   // }
 
-  atualizarPrecoFinal(){
-    console.log(this.lista[0].PRECO, this.quantidade);
-    let precoFinalTemp = parseFloat(this.lista[0].PRECO.replace("R$", "").replace(",", ".")) 
-    localStorage.setItem("PrecoFinal", JSON.stringify(precoFinalTemp * this.quantidade)) 
-    localStorage.setItem("Quantidade", JSON.stringify(this.quantidade));
+  atualizarPrecoFinal(codigo){
+    console.log(this.quantidade);
+    this.carrinhoService.removerCarrinho(this.quantidade, codigo)
+    .then((resultado: any) => {
+        
+        console.log("REMOVEU", resultado)
+    }).catch((erro: any) => {
+      console.log(erro);
+    })
+    
   }
 
   cancelar() {
@@ -99,8 +142,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem("EMAIL");
-    localStorage.removeItem("SENHA");
+    localStorage.clear();
     this.router.navigate(['']);
   }
 }

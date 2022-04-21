@@ -53,6 +53,7 @@ export class PagamentoComponent implements OnInit {
                   if (this.cliente_email != "") {
                     alert("Pagamento efetuado!")
                     this.carrinhoService.carrinho(parseInt(localStorage.getItem("Quantidade")), parseFloat(localStorage.getItem("PrecoFinal")), localStorage.getItem("EMAIL"), localStorage.getItem("Codigo"));
+                    this.confirmarCarrinho();
                     this.router.navigate(["/inicio"])
                   } else {
                     alert("Precisa informar o email!")
@@ -101,25 +102,38 @@ export class PagamentoComponent implements OnInit {
     }
   }
 
-  boletoFinal() {
-    this.boletoService.boleto(this.codigo, this.carrinho_codigo)
-      .then((resultado = null) => {
-        alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!")
-        this.router.navigate(['/pagamento'])
-      }).catch((erro: any) => {
-        console.log(erro);
-      })
-  }
+  // boletoFinal() {
+  //   this.boletoService.boleto(this.codigo, this.carrinho_codigo)
+  //     .then((resultado = null) => {
+  //       alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!")
+  //       this.router.navigate(['/pagamento'])
+  //     }).catch((erro: any) => {
+  //       console.log(erro);
+  //     })
+  //     this.confirmarCarrinho();
+  // }
 
   insta() {
     location.href = 'https://www.instagram.com/';
   }
 
   logout() {
-    localStorage.removeItem("EMAIL");
-    localStorage.removeItem("SENHA");
+    localStorage.clear();
     this.router.navigate(['']);
   }
+
+  email_cliente;
+
+  confirmarCarrinho(){
+    this.carrinhoService.confirmarCarrinho(localStorage.getItem("EMAIL"))
+    .then((resultado: any) => {
+        alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!");
+    }).catch((erro: any) => {
+      console.log(erro);
+    })
+  }
+
+
 }
 
 

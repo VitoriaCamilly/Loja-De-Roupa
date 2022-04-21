@@ -29,11 +29,15 @@
     <h4>Carrinho</h4>
 </div>
 
+<div class="produtos-fileira">
 <div class="mar" *ngFor="let teste of lista">
     <div class="produto">
         <div class="item">
-            <img class="imagemProduto"
+            <img style="width: 20px; height: 20px;" class="imagemProduto"
                 [src]="teste.URL">
+        </div>
+        <div>
+            <button height="10" width="10" (click)="removerCarrinho(teste.CODIGO)">X</button>
         </div>
         <div class="conteudo">
             <div class="titulo">
@@ -54,10 +58,11 @@
             </div>
 
             <div class="detalhes">
-                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal()" type="number" min = 1>
+                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal(teste.CODIGO)" type="number">
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

@@ -371,3 +371,10 @@ input {
     background-color: transparent;
     margin: 10px;
 }
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 158, 174);
+}

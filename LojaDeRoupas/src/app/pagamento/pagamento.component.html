@@ -56,7 +56,7 @@
     <div class="endereco" *ngIf="this.contador == 2">
         <div>
             <span class="boleto">{{boletinho}}</span>
-            <button class="botaoFrete" (click)="boletoFinal()">Confirmar compra</button>
+            <button class="botaoFrete" (click)="confirmarCarrinho()">Confirmar compra</button>
             <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
         </div>
     </div>
