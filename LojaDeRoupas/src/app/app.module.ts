@@ -17,20 +17,47 @@ import { BlusasComponent } from './blusas/blusas/blusas.component';
 import { BlusasModule } from './blusas/blusas.module';
 import { PijamaComponent } from './pijama/pijama/pijama.component';
 import { PijamaModule } from './pijama/pijama.module';
+import { CadastradoComponent } from './login/cadastrado/cadastrado.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
+import { PagamentoComponent } from './pagamento/pagamento.component';
+import { FormsModule } from '@angular/forms';
+import CheckLogged from './CheckLogged';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider
+} from "angular-6-social-login-v2";
 
 const routes: Routes = [
-  { path: '', component: CadastroComponent }, 
-  { path: 'inicio', component: InicioComponent},
-  { path: 'vestidos', component: VestidosComponent},
-  { path: 'blusas', component: BlusasComponent},
-  { path: 'casacos', component: CasacosComponent},
-  { path: 'conjuntos', component: ConjuntosComponent},
-  { path: 'pijama', component: PijamaComponent}
+  { path: '', component: CadastroComponent, canActivate: []}, 
+  { path: 'cadastrado', component: CadastradoComponent, canActivate: []},
+  { path: 'inicio', component: InicioComponent, canActivate: [CheckLogged]},
+  { path: 'vestidos', component: VestidosComponent, canActivate: [CheckLogged]},
+  { path: 'blusas', component: BlusasComponent, canActivate: [CheckLogged]},
+  { path: 'casacos', component: CasacosComponent, canActivate: [CheckLogged]},
+  { path: 'conjuntos', component: ConjuntosComponent, canActivate: [CheckLogged]},
+  { path: 'pijama', component: PijamaComponent, canActivate: [CheckLogged]},
+  { path: 'carrinho', component: CarrinhoComponent, canActivate: [CheckLogged]},
+  { path: 'pagamento', component: PagamentoComponent, canActivate: [CheckLogged]}
 ];
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("34914503001-2d05lgpnjmqjv929h574m82frjfr3a0u.apps.googleusercontent.com")
+        }
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarrinhoComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +68,15 @@ const routes: Routes = [
     BlusasModule,
     CasacosModule,
     ConjuntosModule,
-    PijamaModule
+    PijamaModule,
+    FormsModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [CheckLogged, {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

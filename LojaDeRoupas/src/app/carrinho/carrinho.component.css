@@ -1,4 +1,4 @@
-* {
+html {
     margin: 0px;
     padding: 0px;
 }
@@ -66,73 +66,6 @@ header {
     padding: 12px 0px 0px 0px;
     border-bottom: 1px #e7e4e4 solid;
 }
-
-.span:hover {
-    text-decoration: underline 5px #ff91a7;
-    transition: all .4s;
-}
-
-.span {
-    display: flex;
-    padding: 0px 0px 15px 0px;
-}
-
-.duas-imgs1 {
-    position: relative;
-}
-
-.duas-imgs2 {
-    position: relative;
-}
-
-.duas-imgs3 {
-    position: relative;
-}
-
-.imgs {
-    display: flex;
-    outline: none;
-    margin: 20px 0px 15px 0px;
-    justify-content: center;
-    align-items: center;
-    column-gap: 20px;
-}
-
-.img-um {
-    position: relative;
-}
-
-.img-dois {
-    position: absolute;
-    visibility: hidden;
-    left: 0px;
-}
-
-.duas-imgs1:hover .img-dois {
-    visibility: visible;
-}
-
-.duas-imgs2:hover .img-dois {
-    visibility: visible;
-}
-
-.duas-imgs3:hover .img-dois {
-    visibility: visible;
-}
-
-.homepage {
-    margin: 40px 0px 0px 0px;
-}
-
-.separa {
-    padding: 20px 0px 0px 0px;
-    border-top: 1px solid #c5c5c5;
-    width: 1140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .produto {
     border: 1px solid #ccc;
     display: flex;
@@ -171,9 +104,28 @@ header {
 
 .preco {
     display: flex;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.cifrao {
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 0px;
+    color: #f596a9;
+    font-size: 20px;
+}
+
+.valor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    color: #f596a9;
+    font-size: 30px;
 }
 
 .detalhes {
@@ -196,13 +148,25 @@ header {
     font-weight: 400;
     line-height: 1.4;
     padding: 8px 20px;
-    overflow: initial;
 }
 
 .detalhe:hover {
     background-color: #000;
     color: #fff;
     transition: all .5s;
+}
+
+.superior {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-bottom: 1px #e7e4e4 solid;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    margin: 25px 0px 25px 0px;
+    color: #f596a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
 }
 
 .botao {
@@ -224,72 +188,6 @@ header {
     border: 1px solid rgb(189, 248, 204);
     color: rgb(189, 248, 204);
     transition: all .5s;
-}
-
-.inicio-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.promo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 30px;
-    padding: 15px;
-}
-
-.promo1:hover {
-    position: relative;
-    transition: all .5s;
-    width: 560px;
-    height: 190px;
-}
-
-.texto-e-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    padding: 50px 15px;
-    margin: 0px 200px;
-    column-gap: 100px;
-}
-
-.p {
-    margin: 20px 0px;
-    font-size: 18px;
-}
-
-.renata {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.saber-mais {
-    display: flex;
-    outline: none;
-    position: absolute;
-    color: black;
-}
-.mais {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.insta {
-    margin: 20px 40px 20px 10px;
-    text-decoration: none;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-h4 {
-    font-size: 40px;
 }
 
 footer {
@@ -361,11 +259,10 @@ h3 {
     font-weight: 700;
     height: 40px;
     letter-spacing: .5px;
-    padding: 0px;
+    padding: 0;
     text-transform: uppercase;
     width: 100%;
     background: #fcc7d2;
-    margin: 5px;
 }
 
 .rodape {
@@ -409,19 +306,62 @@ h3 {
     transition: all .5s;
 }
 
-.cabecalho:hover {
-    text-decoration: underline 5px #ff91a7;
-    transition: all .4s;
-}
-
-.cabecalho {
+.botaoPrincipal{
     display: flex;
-    padding: 0px 0px 15px 0px;
+    justify-content: center;
+    align-items: center;
 }
 
-button {
+.botaoPag {
+    background-color: #edb0c0;
+    border: transparent;
+    padding: 15px;
+    border-radius: 8px;
+    color: rgb(151, 150, 150);
+    margin: 15px;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.endereco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    display: grid;
+    outline: none;
     background-color: transparent;
     border: transparent;
-    color: #edb0c0;
-    margin: 25px;
+    border-bottom: 2px solid #edb0c0;
+    margin: 10px;
+}
+
+.botaoFrete {
+    background-color: #edb0c0;
+    border: transparent;
+    padding: 15px;
+    border-radius: 8px;
+    color: rgb(151, 150, 150);
+    margin: 15px;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagemProduto {
+    height: 350px; 
+    width: 250px;
+}
+
+.remover{
+    background-color: #edb0c0;
+    border: transparent;
+    padding: 10px;
 }

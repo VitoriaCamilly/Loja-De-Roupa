@@ -26,57 +26,61 @@
 </header>
 
 <div class="superior">
-    <h4>Casacos</h4>
+    <h4>Pagamento</h4>
 </div>
 
-<<div class="produtos-fileira">
-    <div class="mar" *ngFor="let teste of lista">
-        <div class="produto">
-            <div class="item">
-                <img class="imagemProduto"
-                    [src]="teste.URL">
-            </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    {{teste.NOME}} 
-                </div>
+<div>
+    <h2>Seu preço final é de: R${{getPrecoFinal()}}</h2>
+</div>
 
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
 
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">{{teste.PRECO}}</span>
-                </div>
+<div class="botaoPrincipal">
+    <button class="botaoPag" (click)="pagamento(1)">Cartão de Crédito</button>
+    <button class="botaoPag" (click)="pagamento(2)">Boleto</button>
+</div>
 
-                <div class="detalhes"><button (click)="addCarrinho(teste.CODIGO)" class="detalhe">Comprar</button>
-                </div>
+
+    <div class="endereco" *ngIf="this.contador == 1">
+        <div>
+            <input [(ngModel)]='numCartao' placeholder="Numero do Cartao">
+            <input [(ngModel)]='mesValidade' placeholder="Mês da Validade">
+            <input [(ngModel)]='anoValidade' placeholder="Ano da Validade">
+            <input [(ngModel)]='codigoSeguranca' placeholder="Codigo de Segurança">
+            <input [(ngModel)]='nomeCartao' placeholder="Nome do Cartão">
+            <input [(ngModel)]='cliente_email' placeholder="Confirme seu email">
+            <button class="botaoFrete" (click)="confirmaPagamentoCartao()">Confirmar compra</button>
+            <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="endereco" *ngIf="this.contador == 2">
+        <div>
+            <span class="boleto">{{boletinho}}</span>
+            <div style="display: flex; justify-content: center;">
+            <button class="botaoFrete" (click)="confirmarCarrinho()">Confirmar compra</button>
+            <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
             </div>
         </div>
     </div>
-</div>
+
+
 <footer>
     <div class="contato">
-    <h3>CONTATO</h3>
-    <br />
-    <p class="ctt">Entre em contato conosco</p>
-    <p class="lig">47 99211-7764</p>
-    <p class="lig">47 99211-7764</p>
-    <p class="email">contato@marthie.com.br</p>
-</div>
-
-<div class="novidades">
-    <ul>
-        <h3>RECEBA NOSSAS NOVIDADES</h3>
+        <h3>CONTATO</h3>
         <br />
-        <button (click)="encaminhar('/inicio')" class="cadastro">Voltar para a página inicial</button>
-    </ul>
-</div>
+        <p class="ctt">Entre em contato conosco</p>
+        <p class="lig">47 99211-7764</p>
+        <p class="lig">47 99211-7764</p>
+        <p class="email">contato@marthie.com.br</p>
+    </div>
+
+    <div class="novidades">
+        <ul>
+            <h3>RECEBA NOSSAS NOVIDADES</h3>
+            <br />
+            <button (click)="encaminhar('/inicio')" class="cadastro">Voltar para a página inicial</button>
+        </ul>
+    </div>
 </footer>
 
 <div>

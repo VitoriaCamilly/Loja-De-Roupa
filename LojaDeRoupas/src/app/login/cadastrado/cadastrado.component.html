@@ -9,16 +9,10 @@
       </div>
 
       <div class="login">
-        <h1>REGISTRO</h1>
+        <h1>LOGIN</h1>
       </div>
 
       <div class="cadastro">
-        <div>
-          <input [(ngModel)]='nome' placeholder="Nome Completo">
-        </div>
-        <div>
-          <input [(ngModel)]='nascimento' placeholder="Data de Nascimento" type="date">
-        </div>
         <div>
           <input [(ngModel)]='email' placeholder="Email">
         </div>
@@ -26,15 +20,10 @@
           <input [(ngModel)]='senha' placeholder="Senha" type="password">
         </div>
         <div class="botoes">
-         
-            <button (click)="login()">Cadastrar</button>
-         
-            <button (click)="router.navigate(['/cadastrado'])">Ja tenho um cadastro</button>
-         
+          <button (click)="login()">Entrar</button>
+          <button (click)="router.navigate([''])">Voltar</button>
         </div>
-        <button (click)="socialSignIn('google')">Entrar com o Google</button>
       </div>
     </div>
-
   </div>
 </div>

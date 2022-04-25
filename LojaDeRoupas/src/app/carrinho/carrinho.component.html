@@ -26,40 +26,72 @@
 </header>
 
 <div class="superior">
-    <h4>Casacos</h4>
+    <h4>Carrinho</h4>
 </div>
 
-<<div class="produtos-fileira">
-    <div class="mar" *ngFor="let teste of lista">
-        <div class="produto">
-            <div class="item">
-                <img class="imagemProduto"
-                    [src]="teste.URL">
+<div class="produtos-fileira">
+<div class="mar" *ngFor="let teste of lista">
+    <div class="produto">
+         <div>
+            <button height="10" width="10" class="remover" (click)="removerCarrinho(teste.CODIGO)">X</button>
+        </div>
+        <div class="item">
+            <img style="width: 250px; height: 350px;" class="imagemProduto"
+                [src]="teste.URL">
+        </div>
+       
+        <div class="conteudo">
+            <div class="titulo">
+                {{teste.NOME}}
+                
             </div>
-            <div class="conteudo">
-                <div class="titulo">
-                    {{teste.NOME}} 
-                </div>
 
-                <div class="botoes">
-                    <button class="botao">4</button>
-                    <button class="botao">6</button>
-                    <button class="botao">8</button>
-                    <button class="botao">10</button>
-                    <button class="botao">12</button>
-                </div>
+            <div class="botoes">
+                <button class="botao">4</button>
+                <button class="botao">6</button>
+                <button class="botao">8</button>
+                <button class="botao">10</button>
+                <button class="botao">12</button>
+            </div>
 
-                <div class="preco">
-                    <span class="cifrao">R$</span>
-                    <span class="valor">{{teste.PRECO}}</span>
-                </div>
+            <div class="preco">
+                <span class="cifrao">R$</span>
+                <span class="valor">{{teste.PRECO}}</span>
+            </div>
+            
+            
 
-                <div class="detalhes"><button (click)="addCarrinho(teste.CODIGO)" class="detalhe">Comprar</button>
-                </div>
+
+            <div class="detalhes" *ngIf="this.lista.length == 1">
+                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal(quantidade)" type="number">
             </div>
         </div>
     </div>
 </div>
+</div>
+
+
+<div class="botaoPrincipal">
+    <button class="botaoPag" (click)="encaminhar('/pagamento')">Forma de Pagamento</button>
+    <button class="botaoPag" (click)="frete(1)">Frete<br>R$20,00</button>
+</div>
+
+
+<div class="endereco" *ngIf="this.contador == 1" >
+    <div>
+    <input [(ngModel)]='pais' placeholder="País">
+    <input [(ngModel)]='estado' placeholder="Estado">
+    <input [(ngModel)]='cidade' placeholder="Cidade">
+    <input [(ngModel)]='bairro' placeholder="Bairro">
+    <input [(ngModel)]='cep' placeholder="CEP">
+    <input [(ngModel)]='rua' placeholder="Rua">
+    <input [(ngModel)]='numero' placeholder="Numero">
+    <button class="botaoFrete" (click)="endereco()">Confirmar Endereço</button>
+    <button class="botaoFrete" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>
+
+
 <footer>
     <div class="contato">
     <h3>CONTATO</h3>

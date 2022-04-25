@@ -9,12 +9,25 @@ import { Router } from '@angular/router';
 export class InicioComponent implements OnInit {
 
   constructor(
-    private router: Router
+   private router: Router
   ) { }
 
   ngOnInit() {
     
   }
 
+  encaminhar(caminho) {
+    this.router.navigate([caminho]);
+    window.scrollTo(0, 0);
+  }
 
+  insta(){
+    location.href='https://www.instagram.com/';
+  }
+
+  logout(){
+    localStorage.removeItem("EMAIL");
+    localStorage.removeItem("SENHA");
+    this.router.navigate(['']);
+  }
 }
