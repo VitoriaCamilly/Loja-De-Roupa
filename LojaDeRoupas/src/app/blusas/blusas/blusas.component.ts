@@ -48,11 +48,9 @@ export class BlusasComponent implements OnInit {
     this.carrinhoService.checarProduto(codigo)
       .then((resultado: any) => {
         if (resultado == "") {
+          alert("Produto adicionado ao carrinho!");
           this.carrinhoService.carrinho(1, 1, localStorage.getItem("EMAIL"), codigo)
             .then((resultado: any) => {
-              console.log(resultado);
-              console.log(codigo);
-              alert("Produto adicionado ao carrinho!");
             }).catch(erro => {
               console.log('Erro ao buscar usuarios', erro)
             })

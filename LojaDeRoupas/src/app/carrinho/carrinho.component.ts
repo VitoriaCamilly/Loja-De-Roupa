@@ -15,9 +15,9 @@ export class CarrinhoComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private produtosService: ProdutosService
   ) { }
-  
+
   nomeProduto: "";
-  lista = [{PRECO: ""}];
+  lista = [{ PRECO: "" }];
 
 
   // this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
@@ -35,25 +35,25 @@ export class CarrinhoComponent implements OnInit {
   ngOnInit() {
     localStorage.setItem("PrecoFinal", "0")
     this.carrinhoService.checarCarrinho(localStorage.getItem('EMAIL'))
-    .then((resultado: any) => {
-      for(let i = 0; i < resultado.length; i++){
-        console.log("1",resultado[i])
-        this.produtosService.buscarCarinho(resultado[i].PRODUTOS_CODIGO)
-        .then((resultado2: any) => {
-          this.nomeProduto = resultado2.produtinho.NOME;
-          console.log(i,resultado2.produtinho)
-          this.lista[i] = resultado2.produtinho[0];
-
-          
-          let precoFinalTemp = parseFloat(localStorage.getItem("PrecoFinal")) + ((parseFloat(resultado2.produtinho[0].PRECO.replace("R$", "").replace(",", "."))*this.quantidade)) 
-          localStorage.setItem("PrecoFinal", JSON.stringify(precoFinalTemp));
-          localStorage.setItem("Quantidade", JSON.stringify(this.quantidade));
+      .then((resultado: any) => {
+        for (let i = 0; i < resultado.length; i++) {
+          console.log("1", resultado[i])
+          this.produtosService.buscarCarinho(resultado[i].PRODUTOS_CODIGO)
+            .then((resultado2: any) => {
+              this.nomeProduto = resultado2.produtinho.NOME;
+              console.log(i, resultado2.produtinho)
+              this.lista[i] = resultado2.produtinho[0];
 
 
-      }).catch(erro => {
-        console.log('Erro ao buscar usuarios', erro)
-      })
-       } 
+              let precoFinalTemp = parseFloat(localStorage.getItem("PrecoFinal")) + ((parseFloat(resultado2.produtinho[0].PRECO.replace("R$", "").replace(",", "."))))
+              localStorage.setItem("PrecoFinal", JSON.stringify(precoFinalTemp));
+              localStorage.setItem("Quantidade", JSON.stringify(this.quantidade));
+
+
+            }).catch(erro => {
+              console.log('Erro ao buscar usuarios', erro)
+            })
+        }
       }).catch(erro => {
         console.log('Erro ao buscar usuarios', erro)
       })
@@ -70,7 +70,7 @@ export class CarrinhoComponent implements OnInit {
   qtdd = null;
   precofinal = null;
   produtos_codigo = null;
-  quantidade=1;
+  quantidade = 1;
 
 
   encaminhar(caminho) {
@@ -80,33 +80,63 @@ export class CarrinhoComponent implements OnInit {
 
   frete(cont) {
     this.contador = cont;
-    console.log(this.lista[0][0].CODIGO);
+    console.log("123",this.lista.length);
   }
 
   endereco() {
     this.carrinhoService.endereco(this.pais, this.estado, this.cidade, this.bairro, this.cep, this.rua, this.numero)
       .then((resultado: any) => {
-        
+
       }).catch((erro: any) => {
         console.log(erro);
       })
-      console.log("teste: ",parseFloat(localStorage.getItem("PrecoFinal")) + 20)
-        localStorage.setItem("PrecoFinal",JSON.stringify(parseFloat(localStorage.getItem("PrecoFinal")) + 20));
-        alert("Endereço adicionado ao frete com sucesso!")
-        this.router.navigate(['/pagamento'])
+
+    if (this.pais != "") {
+      if (this.estado != "") {
+        if (this.cidade != "") {
+          if (this.bairro != "") {
+            if (this.cep != "") {
+              if (this.rua != "") {
+                if (this.numero != null) {
+                  console.log("teste: ", parseFloat(localStorage.getItem("PrecoFinal")) + 20)
+                  localStorage.setItem("PrecoFinal", JSON.stringify(parseFloat(localStorage.getItem("PrecoFinal")) + 20));
+                  alert("Endereço adicionado ao frete!")
+                  this.router.navigate(['/pagamento'])
+                } else {
+                  alert("Precisa registrar o numero!")
+                }
+              } else {
+                alert("Precisa registrar a rua!")
+              }
+            } else {
+              alert("Precisa registrar o cep!")
+            }
+          } else {
+            alert("Precisa registrar o bairro!")
+          }
+        } else {
+          alert("Precisa registrar a cidade!")
+        }
+      } else {
+        alert("Precisa registrar o estado!")
+      }
+    } else {
+      alert("Precisa registrar o pais!")
+    }
+
   }
 
-  removerCarrinho(codigo){
+  removerCarrinho(codigo) {
     location.reload()
     console.log(localStorage.getItem("EMAIL"), codigo)
     this.carrinhoService.removerCarrinho(localStorage.getItem("EMAIL"), codigo)
-    .then((resultado: any) => {
-        
+      .then((resultado: any) => {
+
         console.log("REMOVEU", resultado)
-    }).catch((erro: any) => {
-      console.log(erro);
-    })
-    
+      }).catch((erro: any) => {
+        console.log(erro);
+      })
+
   }
 
 
@@ -121,16 +151,8 @@ export class CarrinhoComponent implements OnInit {
   //     })
   // }
 
-  atualizarPrecoFinal(codigo){
-    console.log(this.quantidade);
-    this.carrinhoService.removerCarrinho(this.quantidade, codigo)
-    .then((resultado: any) => {
-        
-        console.log("REMOVEU", resultado)
-    }).catch((erro: any) => {
-      console.log(erro);
-    })
-    
+  atualizarPrecoFinal(quant) {
+    localStorage.setItem("Quantidade", quant)
   }
 
   cancelar() {

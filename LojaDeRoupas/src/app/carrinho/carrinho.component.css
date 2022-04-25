@@ -355,3 +355,13 @@ input {
     align-items: center;
 }
 
+.imagemProduto {
+    height: 350px; 
+    width: 250px;
+}
+
+.remover{
+    background-color: #edb0c0;
+    border: transparent;
+    padding: 10px;
+}

@@ -32,16 +32,18 @@
 <div class="produtos-fileira">
 <div class="mar" *ngFor="let teste of lista">
     <div class="produto">
+         <div>
+            <button height="10" width="10" class="remover" (click)="removerCarrinho(teste.CODIGO)">X</button>
+        </div>
         <div class="item">
-            <img style="width: 20px; height: 20px;" class="imagemProduto"
+            <img style="width: 250px; height: 350px;" class="imagemProduto"
                 [src]="teste.URL">
         </div>
-        <div>
-            <button height="10" width="10" (click)="removerCarrinho(teste.CODIGO)">X</button>
-        </div>
+       
         <div class="conteudo">
             <div class="titulo">
-                {{teste.NOME}} 
+                {{teste.NOME}}
+                
             </div>
 
             <div class="botoes">
@@ -56,9 +58,12 @@
                 <span class="cifrao">R$</span>
                 <span class="valor">{{teste.PRECO}}</span>
             </div>
+            
+            
 
-            <div class="detalhes">
-                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal(teste.CODIGO)" type="number">
+
+            <div class="detalhes" *ngIf="this.lista.length == 1">
+                <input [(ngModel)]="quantidade" (change)="atualizarPrecoFinal(quantidade)" type="number">
             </div>
         </div>
     </div>

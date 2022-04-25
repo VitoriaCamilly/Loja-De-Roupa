@@ -56,8 +56,10 @@
     <div class="endereco" *ngIf="this.contador == 2">
         <div>
             <span class="boleto">{{boletinho}}</span>
+            <div style="display: flex; justify-content: center;">
             <button class="botaoFrete" (click)="confirmarCarrinho()">Confirmar compra</button>
             <button class="botaoFrete" (click)="router.navigate(['/inicio'])">Cancelar</button>
+            </div>
         </div>
     </div>
 

@@ -19,9 +19,9 @@ export class PagamentoComponent implements OnInit {
   numCartao = "";
   mesValidade = null;
   anoValidade = null;
-  codigoSeguranca = ""; 
+  codigoSeguranca = "";
   nomeCartao = "";
-  cliente_email =  "";
+  cliente_email = "";
 
   constructor(
     private boletoService: BoletoService,
@@ -33,8 +33,8 @@ export class PagamentoComponent implements OnInit {
   ngOnInit() {
   }
 
-  getPrecoFinal(){
-    return localStorage.getItem("PrecoFinal");
+  getPrecoFinal() {
+    return Number(Number(localStorage.getItem("PrecoFinal")) * Number(localStorage.getItem("Quantidade")));
   }
 
   encaminhar(caminho) {
@@ -45,7 +45,7 @@ export class PagamentoComponent implements OnInit {
   confirmaPagamentoCartao() {
     this.cartaoService.cadastroCartao(this.numCartao, this.mesValidade, this.anoValidade, this.codigoSeguranca, this.nomeCartao, this.cliente_email, this.carrinho_codigo)
       .then((resultado: any) => {
-        if (this.numCartao != ""){
+        if (this.numCartao != "") {
           if (this.mesValidade != null) {
             if (this.anoValidade != null) {
               if (this.codigoSeguranca != "") {
@@ -58,19 +58,19 @@ export class PagamentoComponent implements OnInit {
                   } else {
                     alert("Precisa informar o email!")
                   }
-                }else {
+                } else {
                   alert("Precisa informar o nome no Cartão!")
                 }
-              }else {
+              } else {
                 alert("Precisa informar o Código de Segurança!")
               }
-            }else {
+            } else {
               alert("Precisa informar o Ano de Validade do Cartao!")
             }
-          }else {
+          } else {
             alert("Precisa informar o Mês de validade do Cartão!")
           }
-        }else {
+        } else {
           alert("Precisa informar o número do Cartão!")
         }
       }).catch((erro: any) => {
@@ -124,13 +124,16 @@ export class PagamentoComponent implements OnInit {
 
   email_cliente;
 
-  confirmarCarrinho(){
+  confirmarCarrinho() {
     this.carrinhoService.confirmarCarrinho(localStorage.getItem("EMAIL"))
-    .then((resultado: any) => {
-        alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!");
-    }).catch((erro: any) => {
-      console.log(erro);
-    })
+      .then((resultado: any) => {
+
+      }).catch((erro: any) => {
+        console.log(erro);
+      })
+       alert("Sua compra foi finalizada com sucesso! Retire após 5 dias do pagamento do boleto ou em caso de frete, adicione mais 30 dias à espera!");
+        this.carrinhoService.carrinho(parseInt(localStorage.getItem("Quantidade")), parseFloat(localStorage.getItem("PrecoFinal")), localStorage.getItem("EMAIL"), localStorage.getItem("Codigo"));
+        this.router.navigate(["/inicio"])
   }
 
 
